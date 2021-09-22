@@ -35,7 +35,6 @@ class User extends Admin
      */
     public function index()
     {
-        // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')->fetch();
     }
 
