@@ -150,7 +150,6 @@ class User extends Admin
 
             // 非超级管理需要验证可选择角色
 
-            $data['roles'] = isset($data['roles']) ? implode(',', $data['roles']) : '';
 
             if (UserModel::update($data)) {
                 $user = UserModel::get($data['id']);
