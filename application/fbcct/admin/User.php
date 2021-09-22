@@ -35,12 +35,17 @@ class User extends Admin
      */
     public function index()
     {
+        // 获取排序
+        $order = $this->getOrder();
+// 读取用户数据
+        $data_list = Db::name('fb_user')->order($order)->select();
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
             ->addColumn('username', '用户名')
             ->addColumn('password', '密码')
             ->addColumn('img', '头像')
             ->addColumn('share', '共享码')
+            ->setRowList($data_list) // 设置表格数据
             ->fetch();
     }
 
