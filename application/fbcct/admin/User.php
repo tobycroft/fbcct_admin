@@ -12,9 +12,6 @@ namespace app\fbcct\admin;
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\fbcct\admin\User as UserModel;
-use app\user\model\Role as RoleModel;
-use app\admin\model\Module as ModuleModel;
-use app\admin\model\Access as AccessModel;
 use util\Tree;
 use think\Db;
 use think\facade\Hook;
@@ -168,13 +165,6 @@ class User extends Admin
 
         // 获取数据
         $info = UserModel::where('id', $id)->field('password', true)->find();
-
-        // 角色列表
-        if (session('user_auth.role') != 1) {
-            $role_list = RoleModel::getTree(null, false, session('user_auth.role'));
-        } else {
-            $role_list = RoleModel::getTree(null, false);
-        }
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
