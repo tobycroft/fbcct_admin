@@ -28,21 +28,24 @@ class User extends Admin
 {
     /**
      * 用户首页
-     * @author 蔡伟明 <314013107@qq.com>
      * @return mixed
      * @throws \think\Exception
      * @throws \think\exception\DbException
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function index()
     {
-        return ZBuilder::make('table')->fetch();
+        return ZBuilder::make('table')
+            ->addColumn('username', '用户名')
+            ->setPageTitle('用户列表')
+            ->fetch();
     }
 
     /**
      * 新增
-     * @author 蔡伟明 <314013107@qq.com>
      * @return mixed
      * @throws \think\Exception
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function add()
     {
@@ -52,7 +55,7 @@ class User extends Admin
             // 验证
             $result = $this->validate($data, 'User');
             // 验证失败 输出错误信息
-            if(true !== $result) $this->error($result);
+            if (true !== $result) $this->error($result);
 
             // 非超级管理需要验证可选择角色
             if (session('user_auth.role') != 1) {
@@ -111,12 +114,12 @@ class User extends Admin
     /**
      * 编辑
      * @param null $id 用户id
-     * @author 蔡伟明 <314013107@qq.com>
      * @return mixed
      * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function edit($id = null)
     {
@@ -148,7 +151,7 @@ class User extends Admin
             // 验证
             $result = $this->validate($data, 'User.update');
             // 验证失败 输出错误信息
-            if(true !== $result) $this->error($result);
+            if (true !== $result) $this->error($result);
 
             // 如果没有填写密码，则不更新密码
             if ($data['password'] == '') {
@@ -220,13 +223,13 @@ class User extends Admin
      * @param string $module 模块名
      * @param int $uid 用户id
      * @param string $tab 分组tab
-     * @author 蔡伟明 <314013107@qq.com>
      * @return mixed
      * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      * @throws \think\exception\PDOException
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function access($module = '', $uid = 0, $tab = '')
     {
@@ -255,9 +258,9 @@ class User extends Admin
                 // 配置分组信息
                 $tab_list[$value['name']] = [
                     'title' => $value['title'],
-                    'url'   => url('access', [
+                    'url' => url('access', [
                         'module' => $value['name'],
-                        'uid'    => $uid
+                        'uid' => $uid
                     ])
                 ];
             }
@@ -271,9 +274,9 @@ class User extends Admin
             $access = $list_module[$module]['access'];
             foreach ($access as $key => $value) {
                 $access[$key]['url'] = url('access', [
-                    'module'  => $module,
-                    'uid'     => $uid,
-                    'tab'     => $key
+                    'module' => $module,
+                    'uid' => $uid,
+                    'tab' => $key
                 ]);
             }
 
@@ -282,7 +285,7 @@ class User extends Admin
             // 当前授权
             $curr_access = $access[$tab];
             if (!isset($curr_access['nodes'])) {
-                $this->error('模块：'.$module.' 数据授权配置缺少nodes信息');
+                $this->error('模块：' . $module . ' 数据授权配置缺少nodes信息');
             }
             $curr_access_nodes = $curr_access['nodes'];
 
@@ -297,17 +300,17 @@ class User extends Admin
                         list($group, $nid) = explode('|', $node);
                         $data_node[] = [
                             'module' => $module,
-                            'group'  => $group,
-                            'uid'    => $uid,
-                            'nid'    => $nid,
-                            'tag'    => $post['tag']
+                            'group' => $group,
+                            'uid' => $uid,
+                            'nid' => $nid,
+                            'tag' => $post['tag']
                         ];
                     }
 
                     // 先删除原有授权
                     $map['module'] = $post['module'];
-                    $map['tag']    = $post['tag'];
-                    $map['uid']    = $post['uid'];
+                    $map['tag'] = $post['tag'];
+                    $map['uid'] = $post['uid'];
                     if (false === AccessModel::where($map)->delete()) {
                         $this->error('清除旧授权失败');
                     }
@@ -325,23 +328,24 @@ class User extends Admin
                         } else {
                             $model_name = $curr_access_nodes['model_name'];
                         }
-                        $class = "app\\{$module}\\model\\".$model_name;
+                        $class = "app\\{$module}\\model\\" . $model_name;
                         $model = new $class;
-                        try{
+                        try {
                             $model->afterAccessUpdate($post);
-                        }catch(\Exception $e){}
+                        } catch (\Exception $e) {
+                        }
                     }
 
                     // 记录行为
                     $nids = implode(',', $post['nodes']);
-                    $details = "模块($module)，分组(".$post['tag'].")，授权节点ID($nids)";
+                    $details = "模块($module)，分组(" . $post['tag'] . ")，授权节点ID($nids)";
                     action_log('user_access', 'admin_user', $uid, UID, $details);
                     $this->success('操作成功', url('access', ['uid' => $post['uid'], 'module' => $module, 'tab' => $tab]));
                 } else {
                     // 清除所有数据授权
                     $map['module'] = $post['module'];
-                    $map['tag']    = $post['tag'];
-                    $map['uid']    = $post['uid'];
+                    $map['tag'] = $post['tag'];
+                    $map['uid'] = $post['uid'];
                     if (false === AccessModel::where($map)->delete()) {
                         $this->error('清除旧授权失败');
                     } else {
@@ -356,13 +360,13 @@ class User extends Admin
                     } else {
                         $model_name = $curr_access_nodes['model_name'];
                     }
-                    $class = "app\\{$module}\\model\\".$model_name;
+                    $class = "app\\{$module}\\model\\" . $model_name;
                     $model = new $class;
 
-                    try{
+                    try {
                         $nodes = $model->access();
-                    }catch(\Exception $e){
-                        $this->error('模型：'.$class."缺少“access”方法");
+                    } catch (\Exception $e) {
+                        $this->error('模型：' . $class . "缺少“access”方法");
                     }
                 } else {
                     // 没有设置模型名，则按表名获取数据
@@ -375,8 +379,8 @@ class User extends Admin
                     $nodes = Db::name($curr_access_nodes['table_name'])->order($curr_access_nodes['primary_key'])->field($fields)->select();
                     $tree_config = [
                         'title' => $curr_access_nodes['node_name'],
-                        'id'    => $curr_access_nodes['primary_key'],
-                        'pid'   => $curr_access_nodes['parent_id']
+                        'id' => $curr_access_nodes['primary_key'],
+                        'pid' => $curr_access_nodes['parent_id']
                     ];
                     $nodes = Tree::config($tree_config)->toLayer($nodes);
                 }
@@ -384,13 +388,13 @@ class User extends Admin
                 // 查询当前用户的权限
                 $map = [
                     'module' => $module,
-                    'tag'    => $tab,
-                    'uid'    => $uid
+                    'tag' => $tab,
+                    'uid' => $uid
                 ];
                 $node_access = AccessModel::where($map)->select();
                 $user_access = [];
                 foreach ($node_access as $item) {
-                    $user_access[$item['group'].'|'.$item['nid']] = 1;
+                    $user_access[$item['group'] . '|' . $item['nid']] = 1;
                 }
 
                 $nodes = $this->buildJsTree($nodes, $curr_access_nodes, $user_access);
@@ -415,38 +419,38 @@ class User extends Admin
      * @param array $nodes 节点
      * @param array $curr_access 当前授权信息
      * @param array $user_access 用户授权信息
-     * @author 蔡伟明 <314013107@qq.com>
      * @return string
+     * @author 蔡伟明 <314013107@qq.com>
      */
     private function buildJsTree($nodes = [], $curr_access = [], $user_access = [])
     {
         $result = '';
         if (!empty($nodes)) {
             $option = [
-                'opened'   => true,
+                'opened' => true,
                 'selected' => false
             ];
             foreach ($nodes as $node) {
-                $key = $curr_access['group'].'|'.$node[$curr_access['primary_key']];
+                $key = $curr_access['group'] . '|' . $node[$curr_access['primary_key']];
                 $option['selected'] = isset($user_access[$key]) ? true : false;
                 if (isset($node['child'])) {
                     $curr_access_child = isset($curr_access['child']) ? $curr_access['child'] : $curr_access;
-                    $result .= '<li id="'.$key.'" data-jstree=\''.json_encode($option).'\'>'.$node[$curr_access['node_name']].$this->buildJsTree($node['child'], $curr_access_child, $user_access).'</li>';
+                    $result .= '<li id="' . $key . '" data-jstree=\'' . json_encode($option) . '\'>' . $node[$curr_access['node_name']] . $this->buildJsTree($node['child'], $curr_access_child, $user_access) . '</li>';
                 } else {
-                    $result .= '<li id="'.$key.'" data-jstree=\''.json_encode($option).'\'>'.$node[$curr_access['node_name']].'</li>';
+                    $result .= '<li id="' . $key . '" data-jstree=\'' . json_encode($option) . '\'>' . $node[$curr_access['node_name']] . '</li>';
                 }
             }
         }
 
-        return '<ul>'.$result.'</ul>';
+        return '<ul>' . $result . '</ul>';
     }
 
     /**
      * 删除用户
      * @param array $ids 用户id
-     * @author 蔡伟明 <314013107@qq.com>
      * @throws \think\Exception
      * @throws \think\exception\PDOException
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function delete($ids = [])
     {
@@ -457,9 +461,9 @@ class User extends Admin
     /**
      * 启用用户
      * @param array $ids 用户id
-     * @author 蔡伟明 <314013107@qq.com>
      * @throws \think\Exception
      * @throws \think\exception\PDOException
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function enable($ids = [])
     {
@@ -470,9 +474,9 @@ class User extends Admin
     /**
      * 禁用用户
      * @param array $ids 用户id
-     * @author 蔡伟明 <314013107@qq.com>
      * @throws \think\Exception
      * @throws \think\exception\PDOException
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function disable($ids = [])
     {
@@ -484,9 +488,9 @@ class User extends Admin
      * 设置用户状态：删除、禁用、启用
      * @param string $type 类型：delete/enable/disable
      * @param array $record
-     * @author 蔡伟明 <314013107@qq.com>
      * @throws \think\Exception
      * @throws \think\exception\PDOException
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function setStatus($type = '', $record = [])
     {
@@ -525,7 +529,7 @@ class User extends Admin
                 $this->error('非法操作');
         }
 
-        action_log('user_'.$type, 'admin_user', '', UID);
+        action_log('user_' . $type, 'admin_user', '', UID);
 
         $this->success('操作成功');
     }
@@ -533,15 +537,15 @@ class User extends Admin
     /**
      * 快速编辑
      * @param array $record 行为日志
-     * @author 蔡伟明 <314013107@qq.com>
      * @return mixed
+     * @author 蔡伟明 <314013107@qq.com>
      */
     public function quickEdit($record = [])
     {
-        $id      = input('post.pk', '');
-        $id      == UID && $this->error('禁止操作当前账号');
-        $field   = input('post.name', '');
-        $value   = input('post.value', '');
+        $id = input('post.pk', '');
+        $id == UID && $this->error('禁止操作当前账号');
+        $field = input('post.name', '');
+        $value = input('post.value', '');
 
         // 非超级管理员检查可操作的用户
         if (session('user_auth.role') != 1) {
@@ -552,7 +556,7 @@ class User extends Admin
             }
         }
 
-        $config  = UserModel::where('id', $id)->value($field);
+        $config = UserModel::where('id', $id)->value($field);
         $details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
         return parent::quickEdit(['user_edit', 'admin_user', $id, UID, $details]);
     }
