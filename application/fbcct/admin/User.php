@@ -43,7 +43,7 @@ class User extends Admin
             ->setPageTitle('用户列表')
             ->addColumn('username', '用户名')
             ->addColumn('password', '密码')
-            ->addColumn('img', '头像')
+            ->addImage('img', '头像')
             ->addColumn('share', '共享码')
             ->setRowList($data_list) // 设置表格数据
             ->fetch();
