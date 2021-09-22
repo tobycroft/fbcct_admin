@@ -154,7 +154,7 @@ class User extends Admin
             if (UserModel::update($data)) {
                 $user = UserModel::get($data['id']);
                 // 记录行为
-                $this->success('编辑成功', cookie('__forward__'));
+                $this->success('编辑成功');
             } else {
                 $this->error('编辑失败');
             }
