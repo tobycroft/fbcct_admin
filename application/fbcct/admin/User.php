@@ -38,7 +38,7 @@ class User extends Admin
         // 获取排序
         $order = $this->getOrder();
 // 读取用户数据
-        $data_list = Db::name('fb_user')->order($order)->select();
+        $data_list = Db::table('fb_user')->order($order)->select();
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
             ->addColumn('username', '用户名')
