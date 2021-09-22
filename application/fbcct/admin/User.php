@@ -38,7 +38,7 @@ class User extends Admin
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
             ->addColumn('username', '用户名')
-
+            ->addColumn('password', '密码')
             ->fetch();
     }
 
