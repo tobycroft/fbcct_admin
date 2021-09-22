@@ -7,7 +7,7 @@
 // | 官方网站: http://dolphinphp.com
 // +----------------------------------------------------------------------
 
-namespace app\fbcct\controller;
+namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
