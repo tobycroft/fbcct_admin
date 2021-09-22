@@ -35,54 +35,8 @@ class User extends Admin
      */
     public function index()
     {
-        cookie('__forward__', $_SERVER['REQUEST_URI']);
-
-        // 获取查询条件
-        $map = $this->getMap();
-        // 非超级管理员检查可管理角色
-        if (session('user_auth.role') != 1) {
-            $role_list = RoleModel::getChildsId(session('user_auth.role'));
-            $map[] = ['role', 'in', $role_list];
-        }
-
-        // 数据列表
-        $data_list = UserModel::where($map)->order('sort,role,id desc')->paginate();
-
-        // 授权按钮
-        $btn_access = [
-            'title' => '授权',
-            'icon'  => 'fa fa-fw fa-key',
-            'href'  => url('access', ['uid' => '__id__'])
-        ];
-
-        // 角色列表
-        if (session('user_auth.role') != 1) {
-            $role_list = RoleModel::getTree(null, false, session('user_auth.role'));
-        } else {
-            $role_list = RoleModel::getTree();
-        }
-
         // 使用ZBuilder快速创建数据表格
-        return ZBuilder::make('table')
-            ->setPageTitle('用户管理') // 设置页面标题
-            ->setTableName('admin_user') // 设置数据表名
-            ->setSearch(['id' => 'ID', 'username' => '用户名', 'email' => '邮箱']) // 设置搜索参数
-            ->addColumns([ // 批量添加列
-                ['id', 'ID'],
-                ['username', '用户名'],
-                ['nickname', '昵称'],
-                ['role', '角色', $role_list],
-                ['email', '邮箱'],
-                ['mobile', '手机号'],
-                ['create_time', '创建时间', 'datetime'],
-                ['status', '状态', 'switch'],
-                ['right_button', '操作', 'btn']
-            ])
-            ->addTopButtons('add,enable,disable,delete') // 批量添加顶部按钮
-            ->addRightButton('custom', $btn_access) // 添加授权按钮
-            ->addRightButtons('edit,delete') // 批量添加右侧按钮
-            ->setRowList($data_list) // 设置表格数据
-            ->fetch(); // 渲染页面
+        return ZBuilder::make('fb_user')->fetch();
     }
 
     /**
