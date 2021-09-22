@@ -11,7 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
-use app\user\model\User as UserModel;
+use app\fbcct\admin\User as UserModel;
 use app\user\model\Role as RoleModel;
 use app\admin\model\Module as ModuleModel;
 use app\admin\model\Access as AccessModel;
