@@ -174,7 +174,7 @@ class User extends Admin
                 ['static', 'username', '用户名', '不可更改'],
                 ['text', 'nickname', '昵称', '可以是中文'],
                 ['password', 'password', '密码', '必填，6-20位'],
-                ['img', 'avatar', '头像'],
+                ['image', 'avatar', '头像'],
             ])
             ->setFormData($info) // 设置表单数据
             ->fetch();
