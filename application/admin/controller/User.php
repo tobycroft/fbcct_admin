@@ -7,7 +7,7 @@
 // | 官方网站: http://dolphinphp.com
 // +----------------------------------------------------------------------
 
-namespace app\user\admin;
+namespace app\admin\controller;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
