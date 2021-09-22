@@ -14,9 +14,9 @@
  */
 return [
     // 模块名[必填]
-    'name'        => 'cms',
+    'name'        => 'fbcct',
     // 模块标题[必填]
-    'title'       => '门户',
+    'title'       => 'fbcct',
     // 模块唯一标识[必填]，格式：模块名.开发者标识.module
     'identifier'  => 'cms.ming.module',
     // 模块图标[选填]
