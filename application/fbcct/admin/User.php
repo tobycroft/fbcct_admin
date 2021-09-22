@@ -45,6 +45,8 @@ class User extends Admin
             ->addColumn('password', '密码')
             ->addColumn('img', '头像', 'picture')
             ->addColumn('share', '共享码')
+            ->addColumn('create_time', '创建时间')
+            ->addColumn('right_button', '删除', 'btn')
             ->setRowList($data_list) // 设置表格数据
             ->fetch();
     }
