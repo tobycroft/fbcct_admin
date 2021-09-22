@@ -155,7 +155,7 @@ class User extends Admin
                 $user = UserModel::get($data['id']);
                 Hook::listen('user_edit', $user);
                 // 记录行为
-                action_log('user_edit', 'admin_user', $user['id'], UID, get_nickname($user['id']));
+                action_log('user_edit', 'fb_user', $user['id'], UID, get_nickname($user['id']));
                 $this->success('编辑成功', cookie('__forward__'));
             } else {
                 $this->error('编辑失败');
