@@ -11,7 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
-use app\fbcct\admin\User as UserModel;
+use app\fbcct\model\User as UserModel;
 use util\Tree;
 use think\Db;
 use think\facade\Hook;
