@@ -39,6 +39,8 @@ class User extends Admin
             ->setPageTitle('用户列表')
             ->addColumn('username', '用户名')
             ->addColumn('password', '密码')
+            ->addColumn('img', '头像')
+            ->addColumn('share', '共享码')
             ->fetch();
     }
 
