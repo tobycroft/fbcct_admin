@@ -11,7 +11,6 @@ namespace app\fbcct\model;
 
 use think\Model;
 use think\helper\Hash;
-use app\user\model\Role as RoleModel;
 use think\Db;
 
 /**
