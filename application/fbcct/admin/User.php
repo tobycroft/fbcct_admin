@@ -173,13 +173,8 @@ class User extends Admin
                 ['hidden', 'id'],
                 ['static', 'username', '用户名', '不可更改'],
                 ['text', 'nickname', '昵称', '可以是中文'],
-                ['select', 'role', '主角色', '非超级管理员，禁止创建与当前角色同级的用户', $role_list],
-                ['select', 'roles', '副角色', '可多选', $role_list, '', 'multiple'],
-                ['text', 'email', '邮箱', ''],
                 ['password', 'password', '密码', '必填，6-20位'],
-                ['text', 'mobile', '手机号'],
-                ['image', 'avatar', '头像'],
-                ['radio', 'status', '状态', '', ['禁用', '启用']]
+                ['img', 'avatar', '头像'],
             ])
             ->setFormData($info) // 设置表单数据
             ->fetch();
