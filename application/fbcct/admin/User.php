@@ -151,43 +151,7 @@ class User extends Admin
         if ($this->request->isPost()) {
             $data = $this->request->post();
 
-            // 禁止修改超级管理员的角色和状态
-            if ($data['id'] == 1 && $data['role'] != 1) {
-                $this->error('禁止修改超级管理员角色');
-            }
-
-            // 禁止修改超级管理员的状态
-            if ($data['id'] == 1 && $data['status'] != 1) {
-                $this->error('禁止修改超级管理员状态');
-            }
-
-            // 验证
-            $result = $this->validate($data, 'User.update');
-            // 验证失败 输出错误信息
-            if (true !== $result) $this->error($result);
-
-            // 如果没有填写密码，则不更新密码
-            if ($data['password'] == '') {
-                unset($data['password']);
-            }
-
             // 非超级管理需要验证可选择角色
-            if (session('user_auth.role') != 1) {
-                if ($data['role'] == session('user_auth.role')) {
-                    $this->error('禁止修改为当前角色同级的用户');
-                }
-                $role_list = RoleModel::getChildsId(session('user_auth.role'));
-                if (!in_array($data['role'], $role_list)) {
-                    $this->error('权限不足，禁止修改为非法角色的用户');
-                }
-
-                if (isset($data['roles'])) {
-                    $deny_role = array_diff($data['roles'], $role_list);
-                    if ($deny_role) {
-                        $this->error('权限不足，附加角色设置错误');
-                    }
-                }
-            }
 
             $data['roles'] = isset($data['roles']) ? implode(',', $data['roles']) : '';
 
