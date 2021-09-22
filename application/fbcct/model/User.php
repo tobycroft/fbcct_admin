@@ -7,7 +7,7 @@
 // | 官方网站: http://dolphinphp.com
 // +----------------------------------------------------------------------
 
-namespace app\user\model;
+namespace app\fbcct\model;
 
 use think\Model;
 use think\helper\Hash;
