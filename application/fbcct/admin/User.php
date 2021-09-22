@@ -163,7 +163,7 @@ class User extends Admin
         }
 
         // 获取数据
-        $info = UserModel::where('id', $id)->field('password', true)->find();
+        $info = UserModel::where('id', $id)->find();
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
