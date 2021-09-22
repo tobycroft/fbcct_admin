@@ -36,8 +36,9 @@ class User extends Admin
     public function index()
     {
         return ZBuilder::make('table')
-            ->addColumn('username', '用户名')
             ->setPageTitle('用户列表')
+            ->addColumn('username', '用户名')
+
             ->fetch();
     }
 
