@@ -41,7 +41,7 @@ class BalanceRecord extends Admin
 // 读取用户数据
         $data_list = BalanceRecordModel::where($map)->order($order)->select();
         return ZBuilder::make('table')
-            ->setSearch(['uid' => 'UID']) // 设置搜索参数
+            ->setSearch(['uid' => 'UID', "order_id" => "order_id"]) // 设置搜索参数
             ->addColumn('uid', '用户id')
             ->addColumn('cid', '币种id')
             ->addColumn('type', '类型id')
