@@ -511,10 +511,8 @@ class System extends Admin
             }
         }
 
-        if (SystemParam::where("id", $id)->update([$field, $value])) {
-            $this->success('编辑成功');
-        } else {
-            $this->error('编辑失败');
-        }
+        $config = SystemParam::where('id', $id)->value($field);
+        $details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
+        return parent::quickEdit(['user_edit', 'system_param', $id, UID, $details]);
     }
 }
