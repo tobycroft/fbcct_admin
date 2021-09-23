@@ -39,7 +39,6 @@ class System extends Admin
 // 读取用户数据
         $data_list = SystemParam::order($order)->select();
         return ZBuilder::make('table')
-            ->setPageTitle('用户列表')
             ->addColumn('key', 'key')
             ->addColumn('val', 'val', 'text.edit')
             ->addColumn('info', '功能说明', 'text.edit')
