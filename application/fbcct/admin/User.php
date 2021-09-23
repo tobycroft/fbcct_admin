@@ -37,6 +37,7 @@ class User extends Admin
 // 读取用户数据
         $data_list = Db::table('fb_user')->order($order)->select();
         return ZBuilder::make('table')
+            ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
             ->setPageTitle('用户列表')
             ->addColumn('username', '用户名')
             ->addColumn('img', '头像', 'picture')

@@ -40,6 +40,7 @@ class Balance extends Admin
         $data_list = BalanceModel::order($order)->select();
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
+            ->setSearch(['uid' => 'UID']) // 设置搜索参数
             ->addColumn('uid', '用户id')
             ->addColumn('cid', '币种id')
             ->addColumn('balance', '余额', 'text.edit')
