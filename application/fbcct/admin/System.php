@@ -39,14 +39,11 @@ class System extends Admin
         $data_list = SystemParam::order($order)->select();
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
-            ->addColumn('username', '用户名')
-            ->addColumn('img', '头像', 'picture')
-            ->addColumn('share', '共享码')
-            ->addColumn('change_date', '修改时间')
-            ->addColumn('date', '创建时间')
-            ->addColumn('right_button', '删除', 'btn')
+            ->addColumn('key', 'key')
+            ->addColumn('val', 'val')
+            ->addColumn('info', '功能')
+            ->addColumn('right_button', '修改', 'btn')
             ->addRightButton('edit') // 添加编辑按钮
-            ->addRightButton('delete') //添加删除按钮
             ->setRowList($data_list) // 设置表格数据
             ->fetch();
     }
