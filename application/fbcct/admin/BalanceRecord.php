@@ -11,7 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
-use app\fbcct\model\SystemParam;
+use app\fbcct\model\BalanceRecord as BalanceRecordModel;
 use app\fbcct\model\User as UserModel;
 use app\user\model\Role;
 use util\Tree;
@@ -37,7 +37,7 @@ class BalanceRecord extends Admin
         // 获取排序
         $order = $this->getOrder();
 // 读取用户数据
-        $data_list = SystemParam::order($order)->select();
+        $data_list = BalanceRecordModel::order($order)->select();
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
             ->addColumn('key', 'key')
@@ -148,7 +148,7 @@ class BalanceRecord extends Admin
             // 非超级管理需要验证可选择角色
 
 
-            if (SystemParam::update($data)) {
+            if (BalanceRecordModel::update($data)) {
                 $this->success('编辑成功');
             } else {
                 $this->error('编辑失败');
@@ -156,7 +156,7 @@ class BalanceRecord extends Admin
         }
 
         // 获取数据
-        $info = SystemParam::where('id', $id)->find();
+        $info = BalanceRecordModel::where('id', $id)->find();
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
@@ -508,7 +508,7 @@ class BalanceRecord extends Admin
                 $this->error('权限不足，没有可操作的用户');
             }
         }
-        $result = SystemParam::where("id", $id)->setField($field, $value);
+        $result = BalanceRecordModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
             $this->success('操作成功');
         } else {
