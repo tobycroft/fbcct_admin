@@ -41,7 +41,7 @@ class Balance extends Admin
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
             ->addColumn('uid', '用户id')
-            ->addColumn('cid', '币种id',)
+            ->addColumn('cid', '币种id')
             ->addColumn('balance', '余额', 'text.edit')
             ->setRowList($data_list) // 设置表格数据
             ->fetch();
