@@ -13,6 +13,7 @@ use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\fbcct\model\SystemParam;
 use app\fbcct\model\User as UserModel;
+use app\user\model\Role;
 use util\Tree;
 use think\Db;
 use think\facade\Hook;
@@ -503,8 +504,8 @@ class System extends Admin
 
         // 非超级管理员检查可操作的用户
         if (session('user_auth.role') != 1) {
-            $role_list = RoleModel::getChildsId(session('user_auth.role'));
-            $user_list = UserModel::where('role', 'in', $role_list)->column('id');
+            $role_list = Role::getChildsId(session('user_auth.role'));
+            $user_list = \app\user\model\User::where('role', 'in', $role_list)->column('id');
             if (!in_array($id, $user_list)) {
                 $this->error('权限不足，没有可操作的用户');
             }
