@@ -42,6 +42,7 @@ class User extends Admin
             ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
             ->addOrder('id')
             ->addColumn('id', 'UID')
+            ->addColumn('pid', '上级UID')
             ->addColumn('username', '用户名')
             ->addColumn('img', '头像', 'picture')
             ->addColumn('share', '共享码')
