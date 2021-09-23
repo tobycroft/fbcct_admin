@@ -39,7 +39,7 @@ class BalanceRecord extends Admin
         $map = $this->getMap();
 
 // 读取用户数据
-        $data_list = BalanceRecordModel::where($map)->order($order)->select();
+        $data_list = BalanceRecordModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
         return ZBuilder::make('table')
             ->setSearch(['uid' => 'UID', "order_id" => "order_id"]) // 设置搜索参数
