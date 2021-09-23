@@ -42,7 +42,7 @@ class System extends Admin
             ->setPageTitle('用户列表')
             ->addColumn('key', 'key')
             ->addColumn('val', 'val', 'text.edit')
-            ->addColumn('info', '功能说明')
+            ->addColumn('info', '功能说明', 'text.edit')
             ->addColumn('right_button', '修改', 'btn')
             ->addRightButton('edit') // 添加编辑按钮
             ->setRowList($data_list) // 设置表格数据
