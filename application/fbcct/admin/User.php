@@ -37,6 +37,7 @@ class User extends Admin
         $map = $this->getMap();
         // 读取用户数据
         $data_list = UserModel::where($map)->order($order)->select();
+        $page = $data_list->render();
         return ZBuilder::make('table')
             ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
             ->addColumn('id', 'UID')
@@ -49,6 +50,7 @@ class User extends Admin
             ->addRightButton('edit') // 添加编辑按钮
             ->addRightButton('delete') //添加删除按钮
             ->setRowList($data_list) // 设置表格数据
+            ->setPages($page)
             ->fetch();
     }
 

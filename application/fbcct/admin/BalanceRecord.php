@@ -40,6 +40,7 @@ class BalanceRecord extends Admin
 
 // 读取用户数据
         $data_list = BalanceRecordModel::where($map)->order($order)->select();
+        $page = $data_list->render();
         return ZBuilder::make('table')
             ->setSearch(['uid' => 'UID', "order_id" => "order_id"]) // 设置搜索参数
             ->addColumn('uid', '用户id')
@@ -55,6 +56,7 @@ class BalanceRecord extends Admin
             ->addColumn('change_date', '更新日期')
             ->addColumn('date', '日期')
             ->setRowList($data_list) // 设置表格数据
+            ->setPages($page)
             ->fetch();
     }
 

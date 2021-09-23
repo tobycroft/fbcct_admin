@@ -38,11 +38,13 @@ class System extends Admin
         $order = $this->getOrder();
 // 读取用户数据
         $data_list = SystemParam::order($order)->select();
+        $page = $data_list->render();
         return ZBuilder::make('table')
             ->addColumn('key', 'key')
             ->addColumn('val', 'val', 'text.edit')
             ->addColumn('info', '功能说明', 'text.edit')
             ->setRowList($data_list) // 设置表格数据
+            ->setPages($page)
             ->fetch();
     }
 
