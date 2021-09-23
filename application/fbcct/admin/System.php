@@ -511,7 +511,7 @@ class System extends Admin
             }
         }
 
-        if (SystemParam::where("id", $id)->update($field, $value)) {
+        if (SystemParam::where("id", $id)->update([$field, $value])) {
             $this->success('编辑成功');
         } else {
             $this->error('编辑失败');
