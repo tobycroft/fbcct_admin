@@ -23,7 +23,7 @@ use think\facade\Hook;
  * 用户默认控制器
  * @package app\user\admin
  */
-class InvestUser extends Admin
+class InvestOrder extends Admin
 {
     /**
      * 用户首页
