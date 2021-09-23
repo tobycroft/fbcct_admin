@@ -45,10 +45,14 @@ class InvestOrder extends Admin
             ->addOrder('id')
             ->setSearch(['uid' => 'UID']) // 设置搜索参数
             ->addColumn('uid', '用户id')
-            ->addColumn('freeze_amount', '锁仓', 'text.edit')
-            ->addColumn('lock_amount', '锁仓额度', 'text.edit')
-            ->addColumn('on_release', '待释放额度', 'text.edit')
-            ->addColumn('amount', '分红权额度', 'text.edit')
+            ->addColumn('pid', '上级UID')
+            ->addColumn('order_id', '订单id')
+            ->addColumn('price', '购买价格U', 'text.edit')
+            ->addColumn('balance', '线性总量', 'text.edit')
+            ->addColumn('left_amount', '剩余量', 'text.edit')
+            ->addColumn('deploy_amount', '已经释放的量', 'text.edit')
+            ->addColumn('generation', '第几周', 'text.edit')
+            ->addColumn('last_exec', '最后更新日期', 'text.edit')
             ->addColumn('change_date', '修改日期')
             ->addColumn('date', '创建日期')
             ->setRowList($data_list) // 设置表格数据
