@@ -510,7 +510,8 @@ class System extends Admin
                 $this->error('权限不足，没有可操作的用户');
             }
         }
-        if (SystemParam::update([[$field, $value]], [["id", "=", $id]])) {
+
+        if (SystemParam::where("id", $id)->update($field, $value)) {
             $this->success('编辑成功');
         } else {
             $this->error('编辑失败');
