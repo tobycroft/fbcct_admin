@@ -514,7 +514,7 @@ class System extends Admin
         $config = SystemParam::where('id', $id)->value($field);
         $details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
 
-        if (SystemParam::where('id', $id)::update([$field,$value])) {
+        if (SystemParam::update([$field, $value], ["id", $id])) {
             $this->success('编辑成功');
         } else {
             $this->error('编辑失败');
