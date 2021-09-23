@@ -40,6 +40,7 @@ class System extends Admin
         $data_list = SystemParam::order($order)->select();
         $page = $data_list->render();
         return ZBuilder::make('table')
+            ->addOrder('id')
             ->addColumn('key', 'key')
             ->addColumn('val', 'val', 'text.edit')
             ->addColumn('info', '功能说明', 'text.edit')

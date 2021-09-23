@@ -43,6 +43,7 @@ class BalanceRecord extends Admin
         $page = $data_list->render();
         return ZBuilder::make('table')
             ->setSearch(['uid' => 'UID', "order_id" => "order_id"]) // 设置搜索参数
+            ->addOrder('id')
             ->addColumn('uid', '用户id')
             ->addColumn('cid', '币种id')
             ->addColumn('type', '类型id')
