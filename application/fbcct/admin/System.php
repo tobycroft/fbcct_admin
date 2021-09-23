@@ -11,6 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
+use app\fbcct\model\SystemParam;
 use app\fbcct\model\User as UserModel;
 use util\Tree;
 use think\Db;
@@ -35,7 +36,7 @@ class System extends Admin
         // 获取排序
         $order = $this->getOrder();
 // 读取用户数据
-        $data_list = Db::table('fb_user')->order($order)->select();
+        $data_list = SystemParam::order($order)->select();
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
             ->addColumn('username', '用户名')
