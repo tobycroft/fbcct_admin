@@ -40,7 +40,7 @@ class System extends Admin
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
             ->addColumn('key', 'key')
-            ->addColumn('val', 'val')
+            ->addColumn('val', 'val', 'text.edit')
             ->addColumn('info', '功能说明')
             ->addColumn('right_button', '修改', 'btn')
             ->addRightButton('edit') // 添加编辑按钮
