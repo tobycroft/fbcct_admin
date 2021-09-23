@@ -40,9 +40,9 @@ class Balance extends Admin
         $data_list = BalanceModel::order($order)->select();
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
-            ->addColumn('key', 'key')
-            ->addColumn('val', 'val', 'text.edit')
-            ->addColumn('info', '功能说明', 'text.edit')
+            ->addColumn('uid', '用户id')
+            ->addColumn('cid', '币种id',)
+            ->addColumn('balance', '余额', 'text.edit')
             ->setRowList($data_list) // 设置表格数据
             ->fetch();
     }

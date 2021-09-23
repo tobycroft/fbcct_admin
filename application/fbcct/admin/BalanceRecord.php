@@ -40,9 +40,18 @@ class BalanceRecord extends Admin
         $data_list = BalanceRecordModel::order($order)->select();
         return ZBuilder::make('table')
             ->setPageTitle('用户列表')
-            ->addColumn('key', 'key')
-            ->addColumn('val', 'val', 'text.edit')
-            ->addColumn('info', '功能说明', 'text.edit')
+            ->addColumn('uid', '用户id')
+            ->addColumn('cid', '币种id',)
+            ->addColumn('type', '类型id')
+            ->addColumn('order_id', '订单号')
+            ->addColumn('before', '之前')
+            ->addColumn('amount', '变动量')
+            ->addColumn('after', '变动后')
+            ->addColumn('extra', '更多')
+            ->addColumn('remark1', '备注1')
+            ->addColumn('remark2', '备注2')
+            ->addColumn('change_date', '更新日期')
+            ->addColumn('date', '日期')
             ->setRowList($data_list) // 设置表格数据
             ->fetch();
     }
