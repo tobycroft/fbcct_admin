@@ -34,8 +34,9 @@ class User extends Admin
     {
         // 获取排序
         $order = $this->getOrder();
-// 读取用户数据
-        $data_list = Db::table('fb_user')->order($order)->select();
+        $map = $this->getMap();
+        // 读取用户数据
+        $data_list = UserModel::where($map)->order($order)->select();
         return ZBuilder::make('table')
             ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
             ->setPageTitle('用户列表')
