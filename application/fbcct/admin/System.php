@@ -149,9 +149,7 @@ class System extends Admin
             // 非超级管理需要验证可选择角色
 
 
-            if (UserModel::update($data)) {
-                $user = UserModel::get($data['id']);
-                // 记录行为
+            if (SystemParam::update($data)) {
                 $this->success('编辑成功');
             } else {
                 $this->error('编辑失败');
@@ -159,7 +157,7 @@ class System extends Admin
         }
 
         // 获取数据
-        $info = UserModel::where('id', $id)->find();
+        $info = SystemParam::where('id', $id)->find();
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
@@ -500,7 +498,6 @@ class System extends Admin
     public function quickEdit($record = [])
     {
         $id = input('post.pk', '');
-        $id == UID && $this->error('禁止操作当前账号');
         $field = input('post.name', '');
         $value = input('post.value', '');
 
@@ -513,7 +510,7 @@ class System extends Admin
             }
         }
 
-        $config = UserModel::where('id', $id)->value($field);
+        $config = SystemParam::where('id', $id)->value($field);
         $details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
         return parent::quickEdit(['user_edit', 'admin_user', $id, UID, $details]);
     }
