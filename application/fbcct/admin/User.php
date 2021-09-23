@@ -36,7 +36,7 @@ class User extends Admin
         $order = $this->getOrder();
         $map = $this->getMap();
         // 读取用户数据
-        $data_list = UserModel::where($map)->order($order)->select();
+        $data_list = UserModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
         return ZBuilder::make('table')
             ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数

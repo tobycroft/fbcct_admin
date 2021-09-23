@@ -37,7 +37,7 @@ class System extends Admin
         // 获取排序
         $order = $this->getOrder();
 // 读取用户数据
-        $data_list = SystemParam::order($order)->select();
+        $data_list = SystemParam::order($order)->paginate();
         $page = $data_list->render();
         return ZBuilder::make('table')
             ->addOrder('id')

@@ -39,7 +39,7 @@ class Balance extends Admin
         $map = $this->getMap();
 
         // 读取用户数据
-        $data_list = BalanceModel::where($map)->order($order)->select();
+        $data_list = BalanceModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
         return ZBuilder::make('table')
             ->addOrder('id')
