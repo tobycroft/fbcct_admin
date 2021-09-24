@@ -58,8 +58,9 @@ class TransferOut extends Admin
             ->addOrder('id')
             ->setSearch(['uid' => 'UID']) // 设置搜索参数
             ->addColumn('uid', '用户id')
-            ->addColumn('raw_amount', '申请金额')
             ->addColumn('order_id', '订单号')
+            ->addColumn('to_address', '转到地址')
+            ->addColumn('raw_amount', '申请金额')
             ->addColumn('fee', '目标地址')
             ->addColumn('amount', '目标地址')
             ->addColumn('approved', '是否通过', 'status', '', [-1 => '不通过:danger', '待通过', '通过', '未知'])
