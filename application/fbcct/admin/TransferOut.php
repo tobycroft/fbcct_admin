@@ -44,13 +44,13 @@ class TransferOut extends Admin
 
         $btn = [
             'title' => '已完成',
-            'icon' => 'fa fa-fw fa-key',
+            'icon' => 'fa fa-fw fa-yes',
             'href' => url('yes', ['uid' => '__id__'])
         ];
 
         $btn1 = [
             'title' => '失败',
-            'icon' => 'fa fa-fw fa-key',
+            'icon' => 'fa fa-fw fa-no',
             'href' => url('no', ['uid' => '__id__'])
         ];
 
