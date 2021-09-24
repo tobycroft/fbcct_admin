@@ -62,7 +62,7 @@ class TransferOut extends Admin
             ->addColumn('to_address', '转到地址')
             ->addColumn('raw_amount', '申请金额')
             ->addColumn('fee', '目标地址')
-            ->addColumn('amount', '目标地址')
+            ->addColumn('amount', '实际金额')
             ->addColumn('approved', '是否通过', 'status', '', [-1 => '不通过:danger', '待通过', '通过', '未知'])
             ->addColumn('status', '当前状态', 'status', '', [-1 => '失败:danger', '待处理', '已完成', '未知'])
             ->addColumn('right_button', '操作', 'btn')
