@@ -45,7 +45,7 @@ class User extends Admin
             ->addColumn('pid', '上级UID')
             ->addColumn('username', '用户名')
             ->addColumn('img', '头像', 'picture')
-            ->addColumn('share', '共享码')
+            ->addColumn('share', '邀请码')
             ->addColumn('change_date', '修改时间')
             ->addColumn('date', '创建时间')
             ->addColumn('right_button', '删除', 'btn')
