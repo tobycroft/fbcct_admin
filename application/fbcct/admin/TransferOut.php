@@ -52,6 +52,10 @@ class TransferOut extends Admin
             ->addColumn('approved', '是否通过', 'status', '', [-1 => '不通过:danger', '待通过', '通过', '未知'])
             ->addColumn('status', '当前状态', 'status', '', [-1 => '失败:danger', '待处理', '已完成', '未知'])
             ->addColumn('right_button', '操作', 'btn')
+            ->addRightButton('edit')
+            ->addRightButton('enable') // 启用
+            ->addRightButton('disable') // 禁用
+            ->addRightButton('delete') // 删除
             ->addColumn('change_date', '目标地址')
             ->addColumn('date', '目标地址')
             ->setRowList($data_list) // 设置表格数据
