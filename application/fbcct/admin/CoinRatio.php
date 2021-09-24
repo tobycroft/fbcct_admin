@@ -11,7 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
-use app\fbcct\model\Balance as CoinRatioModel;
+use app\fbcct\model\CoinRatioModel;
 use app\fbcct\model\User as UserModel;
 use app\user\model\Role;
 use util\Tree;
