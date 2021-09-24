@@ -45,7 +45,7 @@ class Forum extends Admin
             ->addOrder('id')
             ->setSearch(['id' => 'id']) // 设置搜索参数
             ->addColumn('id', 'id')
-            ->addColumn('pid', '上级板块id')
+            ->addColumn('pid', '上级板块id', 'text.edit')
             ->addColumn('name', '板块名称', 'text.edit')
             ->addColumn('info', '币种中文名称', 'text.edit')
             ->addColumn('is_show', '是否展示', 'text.edit')
