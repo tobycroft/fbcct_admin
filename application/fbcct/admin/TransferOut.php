@@ -64,6 +64,7 @@ class TransferOut extends Admin
             ->addColumn('fee', '目标地址')
             ->addColumn('amount', '实际金额')
             ->addColumn('approved', '是否通过', 'status', '', [-1 => '不通过:danger', '待通过', '通过', '未知'])
+            ->addColumn('right_button', '操作', 'btn')
             ->addRightButton('enable') // 启用
             ->addRightButton('disable') // 禁用
             ->addRightButton('delete') // 删除
