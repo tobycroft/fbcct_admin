@@ -508,22 +508,22 @@ class TransferOut extends Admin
         $ids = (array)$ids;
 
         switch ($type) {
-            case 'yes':
+            case 'enable':
                 if (false === TransferRecordModel::where('id', 'in', $ids)->setField('approved', 1)) {
                     $this->error('启用失败');
                 }
                 break;
-            case 'no':
+            case 'disable':
                 if (false === TransferRecordModel::where('id', 'in', $ids)->setField('approved', -1)) {
                     $this->error('禁用失败');
                 }
                 break;
-            case 'enable':
+            case 'yes':
                 if (false === TransferRecordModel::where('id', 'in', $ids)->setField('status', 1)) {
                     $this->error('启用失败');
                 }
                 break;
-            case 'disable':
+            case 'no':
                 if (false === TransferRecordModel::where('id', 'in', $ids)->setField('status', -1)) {
                     $this->error('禁用失败');
                 }
