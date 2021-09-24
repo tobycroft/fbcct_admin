@@ -68,7 +68,6 @@ class TransferOut extends Admin
             ->addColumn('right_button', '操作', 'btn')
             ->addRightButton('enable') // 启用
             ->addRightButton('disable') // 禁用
-            ->addRightButton('delete') // 删除
             ->addRightButton('enable', $btn) // 启用
             ->addRightButton('disable', $btn1) // 禁用
             ->addColumn('change_date', '目标地址')
