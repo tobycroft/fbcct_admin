@@ -52,10 +52,11 @@ class TransferOut extends Admin
             ->addColumn('approved', '是否通过', 'status', '', [-1 => '不通过:danger', '待通过', '通过', '未知'])
             ->addColumn('status', '当前状态', 'status', '', [-1 => '失败:danger', '待处理', '已完成', '未知'])
             ->addColumn('right_button', '操作', 'btn')
-            ->addRightButton('edit')
             ->addRightButton('enable') // 启用
             ->addRightButton('disable') // 禁用
             ->addRightButton('delete') // 删除
+            ->addRightButton('yes') // 启用
+            ->addRightButton('no') // 禁用
             ->addColumn('change_date', '目标地址')
             ->addColumn('date', '目标地址')
             ->setRowList($data_list) // 设置表格数据
@@ -435,6 +436,32 @@ class TransferOut extends Admin
      * @throws \think\exception\PDOException
      * @author 蔡伟明 <314013107@qq.com>
      */
+    public function yes($ids = [])
+    {
+        Hook::listen('user_enable', $ids);
+        return $this->setStatus('enable');
+    }
+
+    /**
+     * 禁用用户
+     * @param array $ids 用户id
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author 蔡伟明 <314013107@qq.com>
+     */
+    public function no($ids = [])
+    {
+        Hook::listen('user_disable', $ids);
+        return $this->setStatus('disable');
+    }
+
+    /**
+     * 启用用户
+     * @param array $ids 用户id
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     * @author 蔡伟明 <314013107@qq.com>
+     */
     public function enable($ids = [])
     {
         Hook::listen('user_enable', $ids);
@@ -467,31 +494,29 @@ class TransferOut extends Admin
         $ids = $this->request->isPost() ? input('post.ids/a') : input('param.ids');
         $ids = (array)$ids;
 
-        // 当前用户所能操作的用户
-        $role_list = RoleModel::getChildsId(session('user_auth.role'));
-        $user_list = UserModel::where('role', 'in', $role_list)->column('id');
-        if (session('user_auth.role') != 1 && !$user_list) {
-            $this->error('权限不足，没有可操作的用户');
-        }
-
-        $ids = array_intersect($user_list, $ids);
-        if (!$ids) {
-            $this->error('权限不足，没有可操作的用户');
-        }
-
         switch ($type) {
+            case 'yes':
+                if (false === TransferRecordModel::where('id', 'in', $ids)->setField('approved', 1)) {
+                    $this->error('启用失败');
+                }
+                break;
+            case 'no':
+                if (false === TransferRecordModel::where('id', 'in', $ids)->setField('approved', -1)) {
+                    $this->error('禁用失败');
+                }
+                break;
             case 'enable':
-                if (false === UserModel::where('id', 'in', $ids)->setField('status', 1)) {
+                if (false === TransferRecordModel::where('id', 'in', $ids)->setField('status', 1)) {
                     $this->error('启用失败');
                 }
                 break;
             case 'disable':
-                if (false === UserModel::where('id', 'in', $ids)->setField('status', 0)) {
+                if (false === TransferRecordModel::where('id', 'in', $ids)->setField('status', -1)) {
                     $this->error('禁用失败');
                 }
                 break;
             case 'delete':
-                if (false === UserModel::where('id', 'in', $ids)->delete()) {
+                if (false === TransferRecordModel::where('id', 'in', $ids)->delete()) {
                     $this->error('删除失败');
                 }
                 break;
@@ -499,7 +524,6 @@ class TransferOut extends Admin
                 $this->error('非法操作');
         }
 
-        action_log('user_' . $type, 'admin_user', '', UID);
 
         $this->success('操作成功');
     }
