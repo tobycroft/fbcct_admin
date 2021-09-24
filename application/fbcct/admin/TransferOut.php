@@ -45,13 +45,13 @@ class TransferOut extends Admin
         $btn = [
             'title' => '已完成',
             'icon' => 'fa fa-fw fa-check-circle',
-            'href' => url('yes')
+            'href' => url('yes', ['id' => '__id__'])
         ];
 
         $btn1 = [
             'title' => '失败',
             'icon' => 'fa fa-fw fa-ban',
-            'href' => url('no')
+            'href' => url('no', ['id' => '__id__'])
         ];
 
         return ZBuilder::make('table')
@@ -68,8 +68,8 @@ class TransferOut extends Admin
             ->addRightButton('enable') // 启用
             ->addRightButton('disable') // 禁用
             ->addRightButton('delete') // 删除
-            ->addRightButton('yes', $btn) // 启用
-            ->addRightButton('no', $btn1) // 禁用
+            ->addRightButton('custom', $btn) // 启用
+            ->addRightButton('custom', $btn1) // 禁用
             ->addColumn('change_date', '目标地址')
             ->addColumn('date', '目标地址')
             ->setRowList($data_list) // 设置表格数据
