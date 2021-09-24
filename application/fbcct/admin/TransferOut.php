@@ -68,8 +68,8 @@ class TransferOut extends Admin
             ->addRightButton('enable') // 启用
             ->addRightButton('disable') // 禁用
             ->addRightButton('delete') // 删除
-            ->addRightButton('custom', $btn) // 启用
-            ->addRightButton('custom', $btn1) // 禁用
+            ->addRightButton('enable', $btn) // 启用
+            ->addRightButton('disable', $btn1) // 禁用
             ->addColumn('change_date', '目标地址')
             ->addColumn('date', '目标地址')
             ->setRowList($data_list) // 设置表格数据
