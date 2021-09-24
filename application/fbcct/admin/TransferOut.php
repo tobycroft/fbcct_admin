@@ -45,13 +45,13 @@ class TransferOut extends Admin
         $btn = [
             'title' => '已完成',
             'icon' => 'fa fa-fw fa-key',
-            'href' => url('access', ['uid' => '__id__'])
+            'href' => url('yes', ['uid' => '__id__'])
         ];
 
         $btn1 = [
             'title' => '失败',
             'icon' => 'fa fa-fw fa-key',
-            'href' => url('access', ['uid' => '__id__'])
+            'href' => url('no', ['uid' => '__id__'])
         ];
 
         return ZBuilder::make('table')
