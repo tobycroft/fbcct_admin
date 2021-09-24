@@ -41,6 +41,19 @@ class TransferOut extends Admin
         // 读取用户数据
         $data_list = TransferRecordModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
+
+        $btn = [
+            'title' => '已完成',
+            'icon' => 'fa fa-fw fa-key',
+            'href' => url('access', ['uid' => '__id__'])
+        ];
+
+        $btn1 = [
+            'title' => '失败',
+            'icon' => 'fa fa-fw fa-key',
+            'href' => url('access', ['uid' => '__id__'])
+        ];
+
         return ZBuilder::make('table')
             ->addOrder('id')
             ->setSearch(['uid' => 'UID']) // 设置搜索参数
@@ -55,8 +68,8 @@ class TransferOut extends Admin
             ->addRightButton('enable') // 启用
             ->addRightButton('disable') // 禁用
             ->addRightButton('delete') // 删除
-            ->addRightButton('yes') // 启用
-            ->addRightButton('no') // 禁用
+            ->addRightButton('yes', $btn) // 启用
+            ->addRightButton('no', $btn1) // 禁用
             ->addColumn('change_date', '目标地址')
             ->addColumn('date', '目标地址')
             ->setRowList($data_list) // 设置表格数据
