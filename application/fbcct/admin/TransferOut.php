@@ -45,13 +45,13 @@ class TransferOut extends Admin
         $btn = [
             'title' => '已完成',
             'icon' => 'fa fa-fw fa-check-circle',
-            'href' => url('yes', ['id' => '__id__'])
+            'href' => url('yes', ['ids' => '__id__'])
         ];
 
         $btn1 = [
             'title' => '失败',
             'icon' => 'fa fa-fw fa-ban',
-            'href' => url('no', ['id' => '__id__'])
+            'href' => url('no', ['ids' => '__id__'])
         ];
 
         return ZBuilder::make('table')
