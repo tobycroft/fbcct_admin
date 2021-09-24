@@ -452,7 +452,7 @@ class TransferOut extends Admin
     public function yes($ids = [])
     {
         Hook::listen('user_enable', $ids);
-        return $this->setStatus('enable');
+        return $this->setStatus('yes');
     }
 
     /**
@@ -465,7 +465,7 @@ class TransferOut extends Admin
     public function no($ids = [])
     {
         Hook::listen('user_disable', $ids);
-        return $this->setStatus('disable');
+        return $this->setStatus('no');
     }
 
     /**
