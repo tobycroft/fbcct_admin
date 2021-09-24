@@ -44,7 +44,8 @@ class Coin extends Admin
         return ZBuilder::make('table')
             ->addOrder('id')
             ->setSearch(['id' => 'id']) // 设置搜索参数
-            ->addColumn('type', 'type')
+            ->addColumn('id', 'id')
+            ->addColumn('type', '币种类型')
             ->addColumn('price', '币种价格', 'text.edit')
             ->addColumn('name', '币种英文名称')
             ->addColumn('cname', '币种中文名称', 'text.edit')
@@ -63,6 +64,7 @@ class Coin extends Admin
             ->addColumn('transfer_out_time_limit', '每天可以转出几次', 'text.edit')
             ->addColumn('start_time', '每日开始时间秒', 'text.edit')
             ->addColumn('end_time', '每日结束时间秒', 'text.edit')
+            ->set
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
