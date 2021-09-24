@@ -43,8 +43,7 @@ class Address extends Admin
         $page = $data_list->render();
         return ZBuilder::make('table')
             ->addOrder('id')
-            ->setSearch(['id' => 'id']) // 设置搜索参数
-            ->addColumn('id', 'id')
+            ->setSearch(['address' => 'address','secret_code'=>'secret_code']) // 设置搜索参数
             ->addColumn('address', '地址')
             ->addColumn('secret_code', '私钥')
             ->setColumnWidth(null, 150)
