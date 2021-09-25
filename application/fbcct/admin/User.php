@@ -52,7 +52,7 @@ class User extends Admin
             ->addColumn('id', 'UID')
             ->addColumn('pid', '上级UID')
             ->addColumn('username', '用户名')
-            ->addColumn('head_img', '头像', 'image')
+            ->addColumn('head_img', '头像')
             ->addColumn('share', '邀请码')
             ->addColumn('change_date', '修改时间')
             ->addColumn('date', '创建时间')
