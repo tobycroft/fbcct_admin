@@ -89,7 +89,7 @@ if (!function_exists('get_file_path')) {
             }
             return $path;
         } else {
-            return config('public_static_path') . $id;
+            return $id;
         }
     }
 }
@@ -103,8 +103,12 @@ if (!function_exists('get_files_path')) {
      */
     function get_files_path($ids = [])
     {
-        $paths = model('admin/attachment')->getFilePath($ids);
-        return !$paths ? [] : $paths;
+        if (config("upload_driver") == "local") {
+            $paths = model('admin/attachment')->getFilePath($ids);
+            return !$paths ? [] : $paths;
+        } else {
+            return $ids;
+        }
     }
 }
 
@@ -117,11 +121,15 @@ if (!function_exists('get_thumb')) {
      */
     function get_thumb($id = 0)
     {
-        $path = model('admin/attachment')->getThumbPath($id);
-        if (!$path) {
-            return config('public_static_path') . 'admin/img/none.png';
+        if (config("upload_driver") == "local") {
+            $path = model('admin/attachment')->getThumbPath($id);
+            if (!$path) {
+                return config('public_static_path') . 'admin/img/none.png';
+            }
+            return $path;
+        } else {
+            return $id;
         }
-        return $path;
     }
 }
 
