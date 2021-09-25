@@ -161,11 +161,13 @@ class Attachment extends Admin
         curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-        $output = curl_exec($ch);
-        curl_close($ch);
-        if (empty($output)) {
-            exit("错误请求");
+        $response = curl_exec($ch);//接收返回信息
+        if (curl_errno($ch)) {//出错则显示错误信息
+            print curl_error($ch);
         }
+        curl_close($ch); //关闭curl链接
+        echo $response;//显示返回信息
+        exit("错误请求");
 //        $json_send = json_decode($output);
         print_r($output);
         die();
