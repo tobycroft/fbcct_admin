@@ -73,61 +73,32 @@ class ForumThread extends Admin
         // 保存数据
         if ($this->request->isPost()) {
             $data = $this->request->post();
-            // 验证
-            $result = $this->validate($data, 'User');
-            // 验证失败 输出错误信息
-            if (true !== $result) $this->error($result);
 
-            // 非超级管理需要验证可选择角色
-            if (session('user_auth.role') != 1) {
-                if ($data['role'] == session('user_auth.role')) {
-                    $this->error('禁止创建与当前角色同级的用户');
-                }
-                $role_list = RoleModel::getChildsId(session('user_auth.role'));
-                if (!in_array($data['role'], $role_list)) {
-                    $this->error('权限不足，禁止创建非法角色的用户');
-                }
-
-                if (isset($data['roles'])) {
-                    $deny_role = array_diff($data['roles'], $role_list);
-                    if ($deny_role) {
-                        $this->error('权限不足，附加角色设置错误');
-                    }
-                }
-            }
-
-            $data['roles'] = isset($data['roles']) ? implode(',', $data['roles']) : '';
-
-            if ($user = UserModel::create($data)) {
-                Hook::listen('user_add', $user);
-                // 记录行为
-                action_log('user_add', 'admin_user', $user['id'], UID);
+            if ($user = ForumThreadModel::create($data)) {
                 $this->success('新增成功', url('index'));
             } else {
                 $this->error('新增失败');
             }
         }
 
-        // 角色列表
-        if (session('user_auth.role') != 1) {
-            $role_list = RoleModel::getTree(null, false, session('user_auth.role'));
-        } else {
-            $role_list = RoleModel::getTree(null, false);
-        }
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('新增') // 设置页面标题
             ->addFormItems([ // 批量添加表单项
-                ['text', 'username', '用户名', '必填，可由英文字母、数字组成'],
-                ['text', 'nickname', '昵称', '可以是中文'],
-                ['select', 'role', '主角色', '非超级管理员，禁止创建与当前角色同级的用户', $role_list],
-                ['select', 'roles', '副角色', '可多选', $role_list, '', 'multiple'],
-                ['text', 'email', '邮箱', ''],
-                ['password', 'password', '密码', '必填，6-20位'],
-                ['text', 'mobile', '手机号'],
-                ['image', 'avatar', '头像'],
-                ['radio', 'status', '状态', '', ['禁用', '启用'], 1]
+                ['select', 'type', '类型', '', ['normal' => 'normal', 'feedback' => 'feedback', 'other' => 'other']],
+                ['text', 'fid', '板块id'],
+                ['text', 'uid', 'uid'],
+                ['text', 'tag', '标签'],
+                ['text', 'title', '标题'],
+                ['ueditor', 'content', '内容'],
+                ['image', 'img', '图片字段'],
+                ['text', 'extra', '附加字段'],
+                ['text', 'view', '查看数量'],
+                ['radio', 'is_public', '是否公开', '', ['禁用', '启用'], 1],
+                ['radio', 'is_hot', '是否设为热门', '', ['禁用', '启用'], 1],
+                ['radio', 'can_reply', '是否可以回复', '', ['禁用', '启用'], 1],
+
             ])
             ->fetch();
     }
