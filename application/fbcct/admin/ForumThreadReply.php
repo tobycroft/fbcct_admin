@@ -63,7 +63,7 @@ class ForumThreadReply extends Admin
             ->addRightButtons(["delete" => "删除",])
             ->addRightButton("custom", $btn_access)
             ->addTopButtons(["add" => "发帖"])
-            ->setColumnWidth('title', 300)
+            ->setColumnWidth('content', 600)
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
