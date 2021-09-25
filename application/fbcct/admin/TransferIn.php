@@ -61,6 +61,8 @@ class TransferIn extends Admin
             ->addColumn('from_address', '来自于地址')
             ->addColumn('amount', '数量')
             ->addColumn("right_button", "功能")
+            ->setColumnWidth('from_address', 400)
+            ->setColumnWidth('order_id', 400)
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
