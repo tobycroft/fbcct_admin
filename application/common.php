@@ -89,6 +89,8 @@ if (!function_exists('get_file_path')) {
             }
             return $path;
         } else {
+            echo $id;
+            die();
             return $id;
         }
     }
