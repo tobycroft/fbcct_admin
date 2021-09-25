@@ -530,11 +530,12 @@ class Balance extends Admin
             "amount" => $value - $last_record["after"],
             "after" => $value,
         ])->getLastSql();
-
+        $this->error($res);
         if (!$res) {
             $this->error($res);
 
         }
+        return;
         if (false !== $result) {
             $this->success('操作成功');
         } else {
