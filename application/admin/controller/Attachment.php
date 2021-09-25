@@ -144,10 +144,6 @@ class Attachment extends Admin
                 $file_input_name = 'file';
         }
         $file = $this->request->file($file_input_name);
-//        print_r($file);
-//        print_r($file_input_name);
-//        print_r($file->getRealPath());
-//        die();
         $file_name = $file->getInfo('name');
 
         $postData = [
@@ -263,6 +259,7 @@ class Attachment extends Admin
                 'module' => $module,
                 'width' => $img_width,
                 'height' => $img_height,
+                'driver' => config('upload_driver'),
             ];
 
             // 写入数据库
@@ -378,6 +375,7 @@ class Attachment extends Admin
             'module' => $this->request->module(),
             'width' => $img->width(),
             'height' => $img->height(),
+            'driver' => config('upload_driver'),
         ];
 
         if ($file_add = AttachmentModel::create($file_info)) {
@@ -566,6 +564,7 @@ class Attachment extends Admin
                 'module' => $module,
                 'width' => $image->width(),
                 'height' => $image->height(),
+                'driver' => config('upload_driver'),
             ];
 
             if ($file_add = AttachmentModel::create($file_info)) {
