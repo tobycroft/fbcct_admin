@@ -55,7 +55,7 @@ class ForumThread extends Admin
             ->addColumn('view', '查看数量', 'text.edit')
             ->addColumn("right_button", "功能")
             ->addRightButtons(["edit" => "修改", "delete" => "删除"])
-            ->setColumnWidth(null, 150)
+            ->setColumnWidth('title', 300)
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
