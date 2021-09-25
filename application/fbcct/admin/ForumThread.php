@@ -184,7 +184,7 @@ class ForumThread extends Admin
                 ['text', 'title', '标题'],
                 ['text', 'content', '内容'],
                 ['image', 'img', '图片字段'],
-                ['extra', '附加字段'],
+                ['text','extra', '附加字段'],
                 ['switch', 'is_public', '是否公开'],
                 ['switch', 'can_reply', '是否可以回复'],
                 ['switch', 'is_hot', '是否设为热门'],
