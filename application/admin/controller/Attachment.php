@@ -161,7 +161,7 @@ class Attachment extends Admin
         $response = curl_exec($ch);
         curl_close($ch);
 //        exit($response);
-        $json_send = json_decode($response);
+        $json_send = json_decode($response, 320);
         if ($json_send["code"] != "0") {
             return $this->uploadError($from, config('upload_url'), $callback);
         }
