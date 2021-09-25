@@ -145,7 +145,7 @@ class Attachment extends Admin
         }
         $file = $this->request->file($file_input_name);
 //        print_r($file);
-//        print_r($file_input_name);
+        print_r($file_input_name);
 //        print_r($file->getRealPath());
 //        die();
         $po = [
