@@ -155,15 +155,9 @@ class Rounding extends Admin
             ->setPageTitle('编辑') // 设置页面标题
             ->addFormItems([ // 批量添加表单项
                 ['hidden', 'id'],
-                ['text', 'tag', '标签'],
-                ['text', 'title', '标题'],
-                ['ueditor', 'content', '内容'],
+                ['text', 'rank', '排序'],
+                ['text', 'title', '备注'],
                 ['image', 'img', '图片字段'],
-                ['text', 'extra', '附加字段'],
-                ['text', 'view', '查看数量'],
-                ['radio', 'is_public', '是否公开', '', ['禁用', '启用'], 1],
-                ['radio', 'is_hot', '是否设为热门', '', ['禁用', '启用'], 1],
-                ['radio', 'can_reply', '是否可以回复', '', ['禁用', '启用'], 1],
             ])
             ->setFormData($info) // 设置表单数据
             ->fetch();
