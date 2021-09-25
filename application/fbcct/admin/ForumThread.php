@@ -189,7 +189,6 @@ class ForumThread extends Admin
                 ['switch', 'can_reply', '是否可以回复'],
                 ['switch', 'is_hot', '是否设为热门'],
                 ['text', 'view', '查看数量'],
-                ['text', "right_button", "功能"],
             ])
             ->setFormData($info) // 设置表单数据
             ->fetch();
