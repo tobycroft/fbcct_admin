@@ -151,7 +151,8 @@ class Attachment extends Admin
         $postData = [
             'file' => new \CURLFile(realpath($file->getPathname()), $file->getMime(), $file->getSaveName()),
         ];
-        print_r($file->getFileInfo());
+        $file_name = $file->getInfo('name');
+        print_r($file_name);
 
         $ch = curl_init();
 //        $header = [
