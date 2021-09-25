@@ -513,7 +513,27 @@ class Balance extends Admin
                 $this->error('权限不足，没有可操作的用户');
             }
         }
+        $data = BalanceModel::where("id", $id)->find();
+        if (!$data) {
+            $this->error('404');
+            return;
+        }
         $result = BalanceModel::where("id", $id)->setField($field, $value);
+        $bal = new \app\fbcct\model\BalanceRecord();
+        $last_record = $bal->where(["uid" => $data['uid'], "cid" => $data['cid']])->order("id desc")->find();
+        $res = $bal->data([
+            "uid" => $last_record["uid"],
+            "cid" => $last_record["cid"],
+            "type" => 1,
+            "order_id" => "back_cash",
+            "before" => $last_record["after"],
+            "amount" => $value,
+            "after" => $last_record["after"] + $value,
+        ])->insert();
+        if (!$res) {
+            $this->error('$bal_fail');
+
+        }
         if (false !== $result) {
             $this->success('操作成功');
         } else {
