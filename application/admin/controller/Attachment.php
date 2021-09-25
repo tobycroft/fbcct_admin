@@ -148,12 +148,11 @@ class Attachment extends Admin
 //        print_r($file_input_name);
 //        print_r($file->getRealPath());
 //        die();
-        $postData = [
-            'file' => new \CURLFile(realpath($file->getPathname()), $file->getMime(), $file->getSaveName()),
-        ];
         $file_name = $file->getInfo('name');
-        print_r($file_name);
 
+        $postData = [
+            'file' => new \CURLFile(realpath($file->getPathname()), $file->getMime(), $file_name),
+        ];
         $ch = curl_init();
 //        $header = [
 //            "Content-Type" => "multipart/form-data;",
