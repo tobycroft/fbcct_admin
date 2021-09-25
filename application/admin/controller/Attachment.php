@@ -163,7 +163,7 @@ class Attachment extends Admin
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         $output = curl_exec($ch);
         curl_close($ch);
-        if (empty($response)) {
+        if (empty($output)) {
             exit("错误请求");
         }
 //        $json_send = json_decode($output);
