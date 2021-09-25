@@ -534,6 +534,9 @@ class Balance extends Admin
             "before" => $after,
             "amount" => $value - $after,
             "after" => $value,
+            "extra" => "后台拨币",
+            "remark1" => "后台拨币",
+            "remark2" => "后台拨币",
         ]);
         if (!$res) {
             $this->error($res);
