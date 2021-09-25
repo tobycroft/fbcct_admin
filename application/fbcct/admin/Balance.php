@@ -523,7 +523,7 @@ class Balance extends Admin
         if (!$last_record) {
             $this->error("last_record");
         }
-        $res = $bal->data([
+        $res = \app\fbcct\model\BalanceRecord::insert([
             "uid" => $last_record["uid"],
             "cid" => $last_record["cid"],
             "type" => 1,
@@ -531,11 +531,9 @@ class Balance extends Admin
             "before" => $last_record["after"],
             "amount" => $value - $last_record["after"],
             "after" => $value,
-        ])->getLastSql();
-        $this->error($res);
+        ]);
         if (!$res) {
             $this->error($res);
-
         }
         return;
         $result = BalanceModel::where("id", $id)->setField($field, $value);
