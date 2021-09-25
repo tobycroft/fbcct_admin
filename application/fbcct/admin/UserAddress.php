@@ -44,13 +44,23 @@ class UserAddress extends Admin
         // 读取用户数据
         $data_list = UserAddressModel::where($map)->where($map2)->order($order)->paginate();
         $page = $data_list->render();
+
+        $btn_access = [
+            'title' => '用户地址',
+            'icon' => 'fa fa-fw fa-key',
+//            'class' => 'btn btn-xs btn-default ajax-get',
+            'href' => url('address/index', ['search_field' => 'address', 'keyword' => '__address__'])
+        ];
+
         return ZBuilder::make('table')
             ->addOrder('id')
             ->setSearch(['uid' => 'uid', 'address' => 'address',]) // 设置搜索参数
             ->addColumn('id', 'id')
             ->addColumn('uid', 'UID')
             ->addColumn('address', '地址')
-            ->setColumnWidth(null, 150)
+            ->addColumn('right_button', '操作', 'btn')
+            ->addRightButton('custom', $btn_access) //添加删除按钮
+            ->setColumnWidth('uid', 150)
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
