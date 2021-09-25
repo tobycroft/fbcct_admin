@@ -149,9 +149,9 @@ class Attachment extends Admin
 //        print_r($file->getRealPath());
 //        die();
         $postData = [
-            'file' => new \CURLFile(realpath($file->getPathname()), $file->getMime(), $file->getFilename()),
+            'file' => new \CURLFile(realpath($file->getPathname()), $file->getMime(), $file->getSaveName()),
         ];
-        print_r($file->getFilename());
+        print_r($file->getSaveName());
 
         $ch = curl_init();
 //        $header = [
