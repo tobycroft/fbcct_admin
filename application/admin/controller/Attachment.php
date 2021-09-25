@@ -153,11 +153,11 @@ class Attachment extends Admin
         ];
 
         $ch = curl_init();
-        $header = [
-            "Content-Type" => "multipart/form-data;",
-        ];
-
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+//        $header = [
+//            "Content-Type" => "multipart/form-data;",
+//        ];
+//
+//        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_URL, config("upload_url"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
