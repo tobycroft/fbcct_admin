@@ -188,7 +188,7 @@ class User extends Admin
                 ['text', 'share', '共享码', '必填，6-20位'],
 //                ['pic', 'head_img', '头像'],
             ])
-            ->addImage('head_img', '图片')
+            ->addImage('head_img', '封面')
             ->setFormData($info) // 设置表单数据
             ->fetch();
     }
