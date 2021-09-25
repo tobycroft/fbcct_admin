@@ -254,7 +254,7 @@ class Attachment extends Admin
                 'uid' => session('user_auth.uid'),
                 'name' => $file->getInfo('name'),
                 'mime' => $file->getInfo('type'),
-                'path' => 'uploads/' . $dir . '/' . str_replace('\\', '/', $info->getSaveName()),
+                'path' => $file_path,
                 'ext' => $info->getExtension(),
                 'size' => $info->getSize(),
                 'md5' => $info->hash('md5'),
