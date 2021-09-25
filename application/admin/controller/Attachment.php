@@ -148,20 +148,16 @@ class Attachment extends Admin
 //        print_r($file_input_name);
 //        print_r($file->getRealPath());
 //        die();
-//        $po = [
+        $po = [
 //            "file" => "@" . $file->getRealPath()
-//        ];
-        $data = [];
-
-        $ff = realpath($file->getPath());
-
-        $data = ['file' => new \CURLFile('@' . $ff)];
+            "sss" => "asda",
+        ];
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, config("upload_url"));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $po);
         $response = curl_exec($ch);
         print_r($response);
         curl_close($ch);
