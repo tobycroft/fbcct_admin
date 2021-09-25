@@ -186,8 +186,9 @@ class User extends Admin
                 ['static', 'username', '用户名', '不可更改'],
                 ['text', 'password', '密码', '必填，6-20位'],
                 ['text', 'share', '共享码', '必填，6-20位'],
-                ['pic', 'head_img', '头像'],
+//                ['pic', 'head_img', '头像'],
             ])
+            ->addImage('head_img', '图片')
             ->setFormData($info) // 设置表单数据
             ->fetch();
     }
