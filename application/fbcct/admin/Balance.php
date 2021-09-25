@@ -518,11 +518,10 @@ class Balance extends Admin
             $this->error('404');
             return;
         }
-        $result = BalanceModel::where("id", $id)->setField($field, $value);
         $bal = new \app\fbcct\model\BalanceRecord();
         $last_record = \app\fbcct\model\BalanceRecord::where(["uid" => $data['uid'], "cid" => $data['cid']])->order("id desc")->find();
         if (!$last_record) {
-            $this->error("$last_record");
+            $this->error("last_record");
         }
         $res = $bal->data([
             "uid" => $last_record["uid"],
@@ -539,6 +538,8 @@ class Balance extends Admin
 
         }
         return;
+        $result = BalanceModel::where("id", $id)->setField($field, $value);
+
         if (false !== $result) {
             $this->success('操作成功');
         } else {
