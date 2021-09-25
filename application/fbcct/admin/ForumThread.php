@@ -86,7 +86,7 @@ class ForumThread extends Admin
         $data = ForumModel::select();
         $arr = [];
         foreach ($data as $item) {
-            $arr[$item["name"]] = $item["id"];
+            $arr[$item["id"]] = $item["name"];
         }
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
@@ -94,7 +94,6 @@ class ForumThread extends Admin
             ->addFormItems([ // 批量添加表单项
                 ['select', 'type', '类型', '', ['normal' => 'normal', 'feedback' => 'feedback', 'other' => 'other']],
                 ['select', 'fid', '板块id', '', $arr],
-                ['text', 'fid', '板块id'],
                 ['text', 'uid', 'uid'],
                 ['text', 'tag', '标签'],
                 ['text', 'title', '标题'],
