@@ -148,24 +148,23 @@ class Attachment extends Admin
 //        print_r($file_input_name);
 //        print_r($file->getRealPath());
 //        die();
-        $post_data = [
-            'file' => new \CURLFile('@' . $file->getRealPath())
-        ];
 //        $po = [
 //            "file" => "@" . $file->getRealPath()
 //        ];
-        $ch = curl_init();
+        $data = [];
 
-        curl_setopt($ch, CURLOPT_URL, config('upload_url'));
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-        $response = curl_exec($ch);//接收返回信息
-        if (curl_errno($ch)) {//出错则显示错误信息
-            print curl_error($ch);
-        }
-        curl_close($ch); //关闭curl链接
+        $file = realpath($file->getPath());
+
+        $data = ['file' => new \CURLFile($file)];
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        $response = curl_exec($ch);
+        curl_close($ch);
         exit($response);
 //        $json_send = json_decode($output);
         print_r($output);
