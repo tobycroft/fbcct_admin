@@ -49,7 +49,7 @@ class ForumThread extends Admin
             ->addColumn('fid', '板块id', 'text.edit')
             ->addColumn('uid', 'UID')
             ->addColumn('tag', '标签', 'text.edit')
-            ->addColumn('title', '内容', 'text.edit')
+            ->addColumn('title', '标题', 'text.edit')
             ->addColumn('img', '图片字段', 'text.edit')
             ->addColumn('extra', '附加字段', 'text.edit')
             ->addColumn('is_public', '是否公开', 'text.edit')
