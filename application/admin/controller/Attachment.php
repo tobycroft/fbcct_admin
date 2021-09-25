@@ -168,11 +168,11 @@ class Attachment extends Admin
 
         // 判断附件是否已存在
         if ($file_exists = AttachmentModel::get(['md5' => $file->hash('md5')])) {
-            if ($file_exists['driver'] == 'local') {
-                $file_path = PUBLIC_PATH . $json_send['path'];
-            } else {
-                $file_path = $json_send['path'];
-            }
+//            if ($file_exists['driver'] == 'local') {
+//                $file_path = PUBLIC_PATH . $json_send['path'];
+//            } else {
+            $file_path = $json_send['path'];
+//            }
 
             // 附件已存在
             return $this->uploadSuccess($from, $file_path, $file_exists['name'], $file_exists['id'], $callback);
