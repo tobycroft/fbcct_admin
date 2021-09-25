@@ -43,7 +43,7 @@ class User extends Admin
             'title' => '用户地址',
             'icon' => 'fa fa-fw fa-key',
 //            'class' => 'btn btn-xs btn-default ajax-get',
-            'href' => url('access', ['search_field' => 'uid', 'keyword' => '__id__'])
+            'href' => url('', ['search_field' => 'uid', 'keyword' => '__id__'])
         ];
 
         return ZBuilder::make('table')
