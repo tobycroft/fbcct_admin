@@ -83,7 +83,7 @@ class ForumThread extends Admin
             }
         }
 
-        $data = ForumModel::where("")->get();
+        $data = ForumModel::where("")->select();
         $arr = [];
         foreach ($data as $item) {
             $arr[$data["name"]] = $data["id"];
