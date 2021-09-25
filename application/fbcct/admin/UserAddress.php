@@ -55,7 +55,7 @@ class UserAddress extends Admin
         return ZBuilder::make('table')
             ->addOrder('id')
             ->setSearch(['uid' => 'uid', 'address' => 'address']) // 设置搜索参数
-            ->addColumn('id', 'id')
+//            ->addColumn('id', 'id')
             ->addColumn('uid', 'UID')
             ->addColumn('address', '地址')
             ->addColumn('right_button', '操作', 'btn')
