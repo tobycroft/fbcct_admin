@@ -145,7 +145,6 @@ class Attachment extends Admin
         }
         $file = $this->request->file($file_input_name);
         $file_name = $file->getInfo('name');
-
         $postData = [
             'file' => new \CURLFile(realpath($file->getPathname()), $file->getMime(), $file_name),
         ];
@@ -264,7 +263,7 @@ class Attachment extends Admin
 
             // 写入数据库
             if ($file_add = AttachmentModel::create($file_info)) {
-                return $this->uploadSuccess($from, $file_path, $file_info['name'], $file_add['id'], $callback);
+                return $this->uploadSuccess($from, $file_path, $file_info['name'], $file_path, $callback);
             } else {
                 return $this->uploadError($from, '上传失败', $callback);
             }
