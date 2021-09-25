@@ -48,7 +48,7 @@ class ForumThread extends Admin
             'title' => '回复',
             'icon' => 'fa fa-fw fa-key',
 //            'class' => 'btn btn-xs btn-default ajax-get',
-            'href' => url('user_address/index', ['search_field' => 'uid', 'keyword' => '__id__'])
+            'href' => url('forum_thread_reply/index', ['search_field' => 'uid', 'keyword' => '__id__'])
         ];
 
         return ZBuilder::make('table')
