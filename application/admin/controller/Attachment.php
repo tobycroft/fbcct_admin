@@ -160,14 +160,13 @@ class Attachment extends Admin
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, config("upload_url"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $response = curl_exec($ch);
+        print_r($response);
         curl_close($ch);
         exit($response);
 //        $json_send = json_decode($output);
-        print_r($output);
         die();
         if ($json_send["code"] != "0") {
             print_r($output);
