@@ -166,8 +166,7 @@ class Attachment extends Admin
             print curl_error($ch);
         }
         curl_close($ch); //关闭curl链接
-        echo $response;//显示返回信息
-        exit("错误请求");
+        exit($response);
 //        $json_send = json_decode($output);
         print_r($output);
         die();
