@@ -162,7 +162,7 @@ class Attachment extends Admin
         curl_setopt($ch, CURLOPT_POSTFIELDS, $po);
         $output = curl_exec($ch);
         curl_close($ch);
-        $json_send = json_decode($output);
+//        $json_send = json_decode($output);
         print_r($output);
         die();
         if ($json_send["code"] != "0") {
