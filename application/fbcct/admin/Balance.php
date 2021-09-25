@@ -47,7 +47,7 @@ class Balance extends Admin
             ->setSearch(['uid' => 'UID']) // 设置搜索参数
             ->addColumn('uid', '用户id')
             ->addColumn('cid', '币种id')
-            ->addColumn('balance', '余额', 'text.edit')
+            ->addColumn('balance', '余额', 'number')
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
