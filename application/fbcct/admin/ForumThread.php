@@ -56,6 +56,7 @@ class ForumThread extends Admin
             ->addColumn('can_reply', '是否可以回复', 'text.edit')
             ->addColumn('is_hot', '是否设为热门', 'text.edit')
             ->addColumn('view', '查看数量', 'text.edit')
+            ->addColumn("right_button","功能")
             ->addRightButtons(["edit" => "修改", "delete" => "删除"])
             ->setColumnWidth(null, 150)
             ->setRowList($data_list) // 设置表格数据
