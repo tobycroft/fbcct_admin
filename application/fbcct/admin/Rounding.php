@@ -11,7 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
-use app\fbcct\model\ForumModel;
+use app\fbcct\model\RoundingModel;
 use app\fbcct\model\RoundingModel;
 use app\fbcct\model\User as UserModel;
 use app\user\model\Role;
@@ -85,7 +85,7 @@ class Rounding extends Admin
             }
         }
 
-        $data = ForumModel::select();
+        $data = RoundingModel::select();
         $arr = [];
         foreach ($data as $item) {
             $arr[$item["id"]] = $item["name"];
