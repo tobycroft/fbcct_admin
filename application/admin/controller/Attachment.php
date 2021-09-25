@@ -154,24 +154,15 @@ class Attachment extends Admin
             'file' => new \CURLFile(realpath($file->getPathname()), $file->getMime(), $file_name),
         ];
         $ch = curl_init();
-//        $header = [
-//            "Content-Type" => "multipart/form-data;",
-//        ];
-//
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_URL, config("upload_url"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
         $response = curl_exec($ch);
-        print_r($response);
         curl_close($ch);
 //        exit($response);
-//        $json_send = json_decode($output);
-        die();
+        $json_send = json_decode($response);
         if ($json_send["code"] != "0") {
-            print_r($output);
-            die();
             return $this->uploadError($from, config('upload_url'), $callback);
         }
 
