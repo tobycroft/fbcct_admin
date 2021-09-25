@@ -86,7 +86,7 @@ class ForumThread extends Admin
         $data = ForumModel::select();
         $arr = [];
         foreach ($data as $item) {
-            $arr[$data["name"]] = $data["id"];
+            $arr[$item["name"]] = $item["id"];
         }
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
