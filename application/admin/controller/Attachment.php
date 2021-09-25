@@ -155,7 +155,7 @@ class Attachment extends Admin
 
         $ch = curl_init();
         $header = [
-            "Content-Type" => "multipart/form-data; boundary=<calculated when request is sent>",
+            "Content-Type" => "multipart/form-data;",
         ];
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
