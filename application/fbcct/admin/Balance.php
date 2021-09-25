@@ -520,7 +520,7 @@ class Balance extends Admin
         }
         $result = BalanceModel::where("id", $id)->setField($field, $value);
         $bal = new \app\fbcct\model\BalanceRecord();
-        $last_record = $bal->where(["uid" => $data['uid'], "cid" => $data['cid']])->order("id desc")->find();
+        $last_record = \app\fbcct\model\BalanceRecord::where(["uid" => $data['uid'], "cid" => $data['cid']])->order("id desc")->find();
         $res = $bal->data([
             "uid" => $last_record["uid"],
             "cid" => $last_record["cid"],
