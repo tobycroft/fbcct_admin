@@ -150,7 +150,6 @@ class Attachment extends Admin
 //        die();
         $po = [
 //            "file" => "@" . $file->getRealPath()
-            "sss" => "asda",
             "file" => "@" . $file->getRealPath(),
         ];
 
