@@ -527,8 +527,8 @@ class Balance extends Admin
             "type" => 1,
             "order_id" => "back_cash",
             "before" => $last_record["after"],
-            "amount" => $value,
-            "after" => $last_record["after"] + $value,
+            "amount" => $value - $last_record["after"],
+            "after" => $value,
         ])->insert();
         if (!$res) {
             $this->error('$bal_fail');
