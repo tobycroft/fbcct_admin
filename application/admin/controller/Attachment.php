@@ -165,15 +165,13 @@ class Attachment extends Admin
         if ($json_send["code"] != "0") {
             return $this->uploadError($from, config('upload_url'), $callback);
         }
-
+        $file_path = $json_send['path'];
         // 判断附件是否已存在
         if ($file_exists = AttachmentModel::get(['md5' => $file->hash('md5')])) {
 //            if ($file_exists['driver'] == 'local') {
 //                $file_path = PUBLIC_PATH . $json_send['path'];
 //            } else {
-            $file_path = $json_send['path'];
-//            }
-
+            $file_path = $file_exists['path'];
             // 附件已存在
             return $this->uploadSuccess($from, $file_path, $file_exists['name'], $file_exists['id'], $callback);
         }
@@ -269,7 +267,6 @@ class Attachment extends Admin
 
             // 写入数据库
             if ($file_add = AttachmentModel::create($file_info)) {
-                $file_path = PUBLIC_PATH . $file_info['path'];
                 return $this->uploadSuccess($from, $file_path, $file_info['name'], $file_add['id'], $callback);
             } else {
                 return $this->uploadError($from, '上传失败', $callback);
