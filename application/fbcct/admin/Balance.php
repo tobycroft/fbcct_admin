@@ -521,15 +521,17 @@ class Balance extends Admin
         $bal = new \app\fbcct\model\BalanceRecord();
         $last_record = \app\fbcct\model\BalanceRecord::where(["uid" => $data['uid'], "cid" => $data['cid']])->order("id desc")->find();
         if (!$last_record) {
-            $this->error($last_record);
+            $after = 0;
+        } else {
+            $after = $last_record["after"];
         }
         $res = $bal->save([
-            "uid" => $last_record["uid"],
-            "cid" => $last_record["cid"],
+            "uid" => $data['uid'],
+            "cid" => $data["cid"],
             "type" => 1,
             "order_id" => "back_cash",
-            "before" => $last_record["after"],
-            "amount" => $value - $last_record["after"],
+            "before" => $after,
+            "amount" => $value - $after,
             "after" => $value,
         ]);
         if (!$res) {
