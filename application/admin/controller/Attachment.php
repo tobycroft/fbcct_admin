@@ -145,9 +145,9 @@ class Attachment extends Admin
         }
         $file = $this->request->file($file_input_name);
 
-        $post_data = array('file' => new \CURLFile($file->getRealPath()));
+//        $post_data = array('file' => new \CURLFile($file->getRealPath()));
         $po = [
-            "file" => $post_data
+            "file" => $file->getRealPath()
         ];
         $ch = curl_init();
 
@@ -160,7 +160,7 @@ class Attachment extends Admin
         curl_close($ch);
         $json_send = json_decode($output);
         if ($json_send["code"] != "0") {
-            print_r($output);
+            print_r($json_send);
             die();
             return $this->uploadError($from, config('upload_url'), $callback);
         }
