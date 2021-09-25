@@ -60,7 +60,7 @@ class ForumThreadReply extends Admin
             ->addColumn('content', '内容', 'textarea.edit')
             ->addColumn('img', '图片', 'image')
             ->addColumn("right_button", "功能")
-            ->addRightButtons(["delete" => "删除",])
+            ->addRightButtons(["edit" => "修改", "delete" => "删除",])
             ->addRightButton("custom", $btn_access)
             ->addTopButtons(["add" => "发帖"])
             ->setColumnWidth('content', 600)
@@ -270,7 +270,8 @@ class ForumThreadReply extends Admin
                         } else {
                             $model_name = $curr_access_nodes['model_name'];
                         }
-                        $class = "app\\{$module}\\model\\" . $model_name;
+                        $class = "app\\{
+        $module}\\model\\" . $model_name;
                         $model = new $class;
                         try {
                             $model->afterAccessUpdate($post);
@@ -302,7 +303,8 @@ class ForumThreadReply extends Admin
                     } else {
                         $model_name = $curr_access_nodes['model_name'];
                     }
-                    $class = "app\\{$module}\\model\\" . $model_name;
+                    $class = "app\\{
+        $module}\\model\\" . $model_name;
                     $model = new $class;
 
                     try {
