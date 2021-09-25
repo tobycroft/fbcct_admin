@@ -36,13 +36,13 @@ class UserAddress extends Admin
     {
         // 获取排序
         $order = $this->getOrder();
-//        $map = $this->getMap();
-        $map = [
+        $map = $this->getMap();
+        $map2 = [
             "type" => "eth"
         ];
 
         // 读取用户数据
-        $data_list = UserAddressModel::where($map)->order($order)->paginate();
+        $data_list = UserAddressModel::where($map)->where($map2)->order($order)->paginate();
         $page = $data_list->render();
         return ZBuilder::make('table')
             ->addOrder('id')
