@@ -12,7 +12,7 @@ namespace app\fbcct\admin;
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\fbcct\model\ForumModel;
-use app\fbcct\model\ForumThreadModel;
+use app\fbcct\model\ForumThreadReplyModel;
 use app\fbcct\model\User as UserModel;
 use app\user\model\Role;
 use util\Tree;
@@ -40,7 +40,7 @@ class ForumThreadReply extends Admin
         $map = $this->getMap();
 
         // 读取用户数据
-        $data_list = ForumThreadModel::where($map)->order($order)->paginate();
+        $data_list = ForumThreadReplyModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
 
 
@@ -86,7 +86,7 @@ class ForumThreadReply extends Admin
         if ($this->request->isPost()) {
             $data = $this->request->post();
 
-            if ($user = ForumThreadModel::create($data)) {
+            if ($user = ForumThreadReplyModel::create($data)) {
                 $this->success('新增成功', url('index'));
             } else {
                 $this->error('新增失败');
@@ -149,7 +149,7 @@ class ForumThreadReply extends Admin
             // 非超级管理需要验证可选择角色
 
 
-            if (ForumThreadModel::update($data)) {
+            if (ForumThreadReplyModel::update($data)) {
                 $this->success('编辑成功');
             } else {
                 $this->error('编辑失败');
@@ -157,7 +157,7 @@ class ForumThreadReply extends Admin
         }
 
         // 获取数据
-        $info = ForumThreadModel::where('id', $id)->find();
+        $info = ForumThreadReplyModel::where('id', $id)->find();
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
@@ -514,7 +514,7 @@ class ForumThreadReply extends Admin
                 $this->error('权限不足，没有可操作的用户');
             }
         }
-        $result = ForumThreadModel::where("id", $id)->setField($field, $value);
+        $result = ForumThreadReplyModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
             $this->success('操作成功');
         } else {
