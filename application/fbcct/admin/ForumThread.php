@@ -181,7 +181,7 @@ class ForumThread extends Admin
             ->addFormItems([ // 批量添加表单项
                 ['hidden', 'id'],
                 ['text', 'tag', '标签'],
-                ['textarea', 'title', '标题'],
+                ['text', 'title', '标题'],
                 ['ueditor', 'content', '内容'],
                 ['image', 'img', '图片字段'],
                 ['text','extra', '附加字段'],
