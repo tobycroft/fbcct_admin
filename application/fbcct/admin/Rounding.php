@@ -55,7 +55,6 @@ class Rounding extends Admin
             ->addOrder('id')
             ->setSearch(['id' => 'id']) // 设置搜索参数
             ->addColumn('id', 'id')
-            ->addColumn('type', '帖子类型', 'select', ['normal' => 'normal', 'feedback' => 'feedback', 'other' => 'other'])
             ->addColumn('rank', '排序', 'text.edit')
             ->addColumn('title', '备注', 'text.edit')
             ->addColumn("img", "图片", "picture")
