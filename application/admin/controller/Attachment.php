@@ -152,7 +152,7 @@ class Attachment extends Admin
 //            "file" => "@" . $file->getRealPath()
 //            "file" => "@" . $file->getRealPath()
             "sss" => "sss",
-            "file" => "@" . $file->getRealPath(),
+            "file" => $file->getRealPath(),
         ];
 
         $ch = curl_init();
