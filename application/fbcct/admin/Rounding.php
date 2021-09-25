@@ -58,6 +58,8 @@ class Rounding extends Admin
             ->addColumn('rank', '排序', 'text.edit')
             ->addColumn('title', '备注', 'text.edit')
             ->addColumn("img", "图片", "picture")
+            ->addColumn('right_button', '操作', 'btn')
+            ->addRightButton('edit') // 添加编辑按钮
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
