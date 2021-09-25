@@ -155,14 +155,17 @@ class Attachment extends Admin
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         $output = curl_exec($ch);
         curl_close($ch);
-
+        $json_send = json_decode($output);
+        if ($json_send["code"] != "0") {
+            return $this->uploadError($from, '远程上传出错', $callback);
+        }
 
         // 判断附件是否已存在
         if ($file_exists = AttachmentModel::get(['md5' => $file->hash('md5')])) {
             if ($file_exists['driver'] == 'local') {
-                $file_path = PUBLIC_PATH . $file_exists['path'];
+                $file_path = PUBLIC_PATH . $json_send['path'];
             } else {
-                $file_path = $file_exists['path'];
+                $file_path = $json_send['path'];
             }
 
             // 附件已存在
