@@ -98,19 +98,10 @@ class ForumThreadReply extends Admin
         return ZBuilder::make('form')
             ->setPageTitle('新增') // 设置页面标题
             ->addFormItems([ // 批量添加表单项
-                ['select', 'type', '类型', '', ['normal' => 'normal', 'feedback' => 'feedback', 'other' => 'other']],
-                ['select', 'fid', '板块id', '', $arr],
+                ['text', 'tid', '帖子ID'],
                 ['text', 'uid', 'uid'],
-                ['text', 'tag', '标签'],
-                ['text', 'title', '标题'],
                 ['ueditor', 'content', '内容'],
                 ['image', 'img', '图片字段'],
-                ['text', 'extra', '附加字段'],
-                ['text', 'view', '查看数量'],
-                ['radio', 'is_public', '是否公开', '', ['禁用', '启用'], 1],
-                ['radio', 'is_hot', '是否设为热门', '', ['禁用', '启用'], 1],
-                ['radio', 'can_reply', '是否可以回复', '', ['禁用', '启用'], 1],
-
             ])
             ->fetch();
     }
@@ -160,15 +151,10 @@ class ForumThreadReply extends Admin
             ->setPageTitle('编辑') // 设置页面标题
             ->addFormItems([ // 批量添加表单项
                 ['hidden', 'id'],
-                ['text', 'tag', '标签'],
-                ['text', 'title', '标题'],
+                ['text', 'tid', '帖子ID'],
+                ['text', 'uid', 'uid'],
                 ['ueditor', 'content', '内容'],
                 ['image', 'img', '图片字段'],
-                ['text', 'extra', '附加字段'],
-                ['text', 'view', '查看数量'],
-                ['radio', 'is_public', '是否公开', '', ['禁用', '启用'], 1],
-                ['radio', 'is_hot', '是否设为热门', '', ['禁用', '启用'], 1],
-                ['radio', 'can_reply', '是否可以回复', '', ['禁用', '启用'], 1],
             ])
             ->setFormData($info) // 设置表单数据
             ->fetch();
