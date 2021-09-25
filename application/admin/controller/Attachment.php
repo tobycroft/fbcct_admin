@@ -157,7 +157,7 @@ class Attachment extends Admin
         curl_close($ch);
         $json_send = json_decode($output);
         if ($json_send["code"] != "0") {
-            return $this->uploadError($from, '远程上传出错', $callback);
+            return $this->uploadError($from, $output, $callback);
         }
 
         // 判断附件是否已存在
