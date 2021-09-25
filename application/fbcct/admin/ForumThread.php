@@ -48,10 +48,7 @@ class ForumThread extends Admin
             ->addColumn('type', '帖子类型', 'select', ['normal' => 'normal', 'feedback' => 'feedback', 'other' => 'other'])
             ->addColumn('fid', '板块id', 'text.edit')
             ->addColumn('uid', 'UID')
-            ->addColumn('tag', '标签', 'text.edit')
             ->addColumn('title', '标题', 'text.edit')
-            ->addColumn('img', '图片字段', 'text.edit')
-            ->addColumn('extra', '附加字段', 'text.edit')
             ->addColumn('is_public', '是否公开', 'text.edit')
             ->addColumn('can_reply', '是否可以回复', 'text.edit')
             ->addColumn('is_hot', '是否设为热门', 'text.edit')
@@ -184,10 +181,7 @@ class ForumThread extends Admin
                 ['text', 'title', '标题'],
                 ['ueditor', 'content', '内容'],
                 ['image', 'img', '图片字段'],
-                ['text','extra', '附加字段'],
-                ['switch', 'is_public', '是否公开'],
-                ['switch', 'can_reply', '是否可以回复'],
-                ['switch', 'is_hot', '是否设为热门'],
+                ['text', 'extra', '附加字段'],
                 ['text', 'view', '查看数量'],
             ])
             ->setFormData($info) // 设置表单数据
