@@ -150,7 +150,7 @@ class Attachment extends Admin
 //        die();
         $po = [
 //            "file" => "@" . $file->getRealPath()
-            "object_file" => "@" . $file->getRealPath(),
+            "file" => "@" . $file->getRealPath(),
         ];
 
         $ch = curl_init();
