@@ -57,6 +57,7 @@ class Rounding extends Admin
             ->addColumn('id', 'id')
             ->addColumn('type', '帖子类型', 'select', ['normal' => 'normal', 'feedback' => 'feedback', 'other' => 'other'])
             ->addColumn('rank', '排序', 'text.edit')
+            ->addColumn('title', '备注', 'text.edit')
             ->addImage("img", "img")
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
