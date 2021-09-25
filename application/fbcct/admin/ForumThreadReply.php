@@ -57,7 +57,7 @@ class ForumThreadReply extends Admin
             ->addColumn('id', 'id')
             ->addColumn('tid', '帖子id')
             ->addColumn('uid', 'UID')
-            ->addColumn('content', '内容', 'text.edit')
+            ->addColumn('content', '内容', 'textarea.edit')
             ->addColumn('img', '图片', 'image')
             ->addColumn("right_button", "功能")
             ->addRightButtons(["delete" => "删除",])
