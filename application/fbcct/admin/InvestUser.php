@@ -49,6 +49,7 @@ class InvestUser extends Admin
             ->addColumn('lock_amount', '锁仓额度', 'text.edit')
             ->addColumn('on_release', '待释放额度', 'text.edit')
             ->addColumn('amount', '分红权额度', 'text.edit')
+            ->addColumn('level', '等级', 'text.edit')
             ->addColumn('change_date', '修改日期')
             ->addColumn('date', '创建日期')
             ->setRowList($data_list) // 设置表格数据
