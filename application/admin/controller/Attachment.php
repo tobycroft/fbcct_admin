@@ -145,7 +145,7 @@ class Attachment extends Admin
         }
         $file = $this->request->file($file_input_name);
 
-        $post_data = array('file' => new \CURLFile('@' . $file->getRealPath(), $file->getType(), $file->getFilename()));
+        $post_data = array('file' => new \CURLFile(realpath('@' . $file->getRealPath()), $file->getType(), $file->getFilename()));
 
         $ch = curl_init();
 
