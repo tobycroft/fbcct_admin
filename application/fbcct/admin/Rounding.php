@@ -159,6 +159,7 @@ class Rounding extends Admin
                 ['text', 'title', '备注'],
                 ['image', 'img', '图片字段'],
             ])
+            ->assign('image_upload_url', "admin/attachment/upload", ["dir" => "images", "module" => request()->module()])
             ->setFormData($info) // 设置表单数据
             ->fetch();
     }
