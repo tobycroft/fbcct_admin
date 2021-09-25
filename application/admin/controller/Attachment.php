@@ -148,10 +148,10 @@ class Attachment extends Admin
 //        print_r($file_input_name);
 //        print_r($file->getRealPath());
 //        die();
-//        $post_data = array('file' => new \CURLFile(realpath($file->getRealPath()), $file->getType(), $file->getFilename()));
-        $po = [
-            "file" => "@" . $file->getRealPath()
-        ];
+        $post_data = array('file' => new \CURLFile(realpath($file->getRealPath()), $file->getType(), $file->getFilename()));
+//        $po = [
+//            "file" => "@" . $file->getRealPath()
+//        ];
         $ch = curl_init();
         print_r($po);
         print_r( config('upload_url'));
@@ -160,14 +160,14 @@ class Attachment extends Admin
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $po);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         $output = curl_exec($ch);
         curl_close($ch);
         if (empty($response)){
         exit("错误请求");
         }
 //        $json_send = json_decode($output);
-//        print_r($output);
+        print_r($output);
         die();
         if ($json_send["code"] != "0") {
             print_r($output);
