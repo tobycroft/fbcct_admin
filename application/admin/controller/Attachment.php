@@ -162,7 +162,7 @@ class Attachment extends Admin
         $response = curl_exec($ch);
         print_r($response);
         curl_close($ch);
-        exit($response);
+//        exit($response);
 //        $json_send = json_decode($output);
         die();
         if ($json_send["code"] != "0") {
