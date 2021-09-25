@@ -523,7 +523,7 @@ class Balance extends Admin
         if (!$last_record) {
             $this->error("last_record");
         }
-        $res = \app\fbcct\model\BalanceRecord::insert([
+        $res = $bal->save([
             "uid" => $last_record["uid"],
             "cid" => $last_record["cid"],
             "type" => 1,
