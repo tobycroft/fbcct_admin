@@ -52,7 +52,7 @@ class User extends Admin
             ->addColumn('id', 'UID')
             ->addColumn('pid', '上级UID')
             ->addColumn('username', '用户名')
-            ->addColumn('head_img', '头像', 'picture')
+            ->addColumn('head_img', '头像', 'image')
             ->addColumn('share', '邀请码')
             ->addColumn('change_date', '修改时间')
             ->addColumn('date', '创建时间')
@@ -186,7 +186,7 @@ class User extends Admin
                 ['static', 'username', '用户名', '不可更改'],
                 ['text', 'password', '密码', '必填，6-20位'],
                 ['text', 'share', '共享码', '必填，6-20位'],
-                ['pic', 'head_img', '头像'],
+                ['image', 'head_img', '头像'],
             ])
             ->setFormData($info) // 设置表单数据
             ->fetch();
