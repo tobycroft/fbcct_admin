@@ -53,7 +53,7 @@ class ForumThreadReply extends Admin
 
         return ZBuilder::make('table')
             ->addOrder('id')
-            ->setSearch(['id' => 'id']) // 设置搜索参数
+            ->setSearch(['tid' => 'tid']) // 设置搜索参数
             ->addColumn('id', 'id')
             ->addColumn('tid', '帖子id')
             ->addColumn('uid', 'UID')
