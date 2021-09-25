@@ -46,7 +46,7 @@ class UserAddress extends Admin
         $page = $data_list->render();
 
         $btn_access = [
-            'title' => '用户地址',
+            'title' => '地址私钥',
             'icon' => 'fa fa-fw fa-key',
 //            'class' => 'btn btn-xs btn-default ajax-get',
             'href' => url('address/index', ['search_field' => 'address', 'keyword' => '__address__'])
