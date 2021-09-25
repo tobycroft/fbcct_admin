@@ -53,7 +53,7 @@ class TransferIn extends Admin
 
         return ZBuilder::make('table')
             ->addOrder('id')
-            ->setSearch(['tid' => 'tid']) // 设置搜索参数
+            ->setSearch(['uid' => 'uid', 'id' => 'id', 'order_id' => 'order_id']) // 设置搜索参数
             ->addColumn('id', 'id')
             ->addColumn('uid', 'uid')
             ->addColumn('cid', '币种ID')

@@ -56,7 +56,7 @@ class TransferOut extends Admin
 
         return ZBuilder::make('table')
             ->addOrder('id')
-            ->setSearch(['uid' => 'UID']) // 设置搜索参数
+            ->setSearch(['uid' => 'uid', 'id' => 'id', 'order_id' => 'order_id']) // 设置搜索参数
             ->addColumn('uid', '用户id')
             ->addColumn('order_id', '订单号')
             ->addColumn('to_address', '转到地址')
