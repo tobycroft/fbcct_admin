@@ -82,7 +82,7 @@ if (!function_exists('get_file_path')) {
      */
     function get_file_path($id = 0)
     {
-        if (config("upload_url") == "local") {
+        if (config("upload_driver") == "local") {
             $path = model('admin/attachment')->getFilePath($id);
             if (!$path) {
                 return config('public_static_path') . 'admin/img/none.png';
