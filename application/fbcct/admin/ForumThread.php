@@ -56,7 +56,7 @@ class ForumThread extends Admin
             ->addColumn('can_reply', '是否可以回复', 'text.edit')
             ->addColumn('is_hot', '是否设为热门', 'text.edit')
             ->addColumn('view', '查看数量', 'text.edit')
-            ->addColumn("right_button","功能")
+            ->addColumn("right_button", "功能")
             ->addRightButtons(["edit" => "修改", "delete" => "删除"])
             ->setColumnWidth(null, 150)
             ->setRowList($data_list) // 设置表格数据
@@ -180,10 +180,16 @@ class ForumThread extends Admin
             ->setPageTitle('编辑') // 设置页面标题
             ->addFormItems([ // 批量添加表单项
                 ['hidden', 'id'],
-                ['static', 'username', '用户名', '不可更改'],
-                ['text', 'password', '密码', '必填，6-20位'],
-                ['text', 'share', '共享码', '必填，6-20位'],
-                ['image', 'avatar', '头像'],
+                ['text', 'tag', '标签'],
+                ['text', 'title', '标题'],
+                ['text', 'content', '内容'],
+                ['image', 'img', '图片字段'],
+                ['extra', '附加字段'],
+                ['switch', 'is_public', '是否公开'],
+                ['switch', 'can_reply', '是否可以回复'],
+                ['switch', 'is_hot', '是否设为热门'],
+                ['text', 'view', '查看数量'],
+                ['text', "right_button", "功能"],
             ])
             ->setFormData($info) // 设置表单数据
             ->fetch();
