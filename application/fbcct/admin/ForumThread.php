@@ -55,7 +55,7 @@ class ForumThread extends Admin
             ->addColumn('view', '查看数量', 'text.edit')
             ->addColumn("right_button", "功能")
             ->addRightButtons(["edit" => "修改", "delete" => "删除"])
-            ->addTopButtons(["add"=>"发帖"])
+            ->addTopButtons(["add" => "发帖"])
             ->setColumnWidth('title', 300)
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
@@ -155,6 +155,9 @@ class ForumThread extends Admin
                 ['image', 'img', '图片字段'],
                 ['text', 'extra', '附加字段'],
                 ['text', 'view', '查看数量'],
+                ['switch', 'is_public', '是否公开', '', ['禁用', '启用'], 1],
+                ['switch', 'is_hot', '是否设为热门', '', ['禁用', '启用'], 1],
+                ['switch', 'can_reply', '是否可以回复', '', ['禁用', '启用'], 1],
             ])
             ->setFormData($info) // 设置表单数据
             ->fetch();
