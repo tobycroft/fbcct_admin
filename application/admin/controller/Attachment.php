@@ -147,7 +147,7 @@ class Attachment extends Admin
 
 //        $post_data = array('file' => new \CURLFile($file->getRealPath()));
         $po = [
-            "file" => $file->getRealPath()
+            "file" => $file->getPath()
         ];
         $ch = curl_init();
 
