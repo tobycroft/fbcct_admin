@@ -149,7 +149,7 @@ class Attachment extends Admin
 //        print_r($file->getRealPath());
 //        die();
         $post_data = [
-            'file' => new \CURLFile('@' . $file->getRealPath(), $file->getType(), $file->getFilename())
+            'file' => new \CURLFile('@' . $file->getRealPath())
         ];
 //        $po = [
 //            "file" => "@" . $file->getRealPath()
@@ -160,7 +160,7 @@ class Attachment extends Admin
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         $response = curl_exec($ch);//接收返回信息
         if (curl_errno($ch)) {//出错则显示错误信息
             print curl_error($ch);
