@@ -145,17 +145,15 @@ class Attachment extends Admin
         }
         $file = $this->request->file($file_input_name);
 
-//        $post_data = array('file' => new \CURLFile($file->getRealPath()));
-        $po = [
-            "file" => $file->getPath()
-        ];
+        $post_data = array('file' => new \CURLFile($file->getPath()));
+
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, config('upload_url'));
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $po);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         $output = curl_exec($ch);
         curl_close($ch);
         $json_send = json_decode($output);
