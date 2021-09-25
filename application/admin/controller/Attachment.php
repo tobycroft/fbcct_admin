@@ -153,7 +153,7 @@ class Attachment extends Admin
 //            "file" => "@" . $file->getRealPath()
 //        ];
         $ch = curl_init();
-        print_r($po);
+        print_r($post_data);
         print_r( config('upload_url'));
 
         curl_setopt($ch, CURLOPT_URL, config('upload_url'));
