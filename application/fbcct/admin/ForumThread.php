@@ -96,9 +96,9 @@ class ForumThread extends Admin
                 ['image', 'img', '图片字段'],
                 ['text', 'extra', '附加字段'],
                 ['text', 'view', '查看数量'],
-                ['radio', 'is_public', '是否公开', '', ['禁用', '启用'], 1],
-                ['radio', 'is_hot', '是否设为热门', '', ['禁用', '启用'], 1],
-                ['radio', 'can_reply', '是否可以回复', '', ['禁用', '启用'], 1],
+                ['switch', 'is_public', '是否公开', '', ['禁用', '启用'], 1],
+                ['switch', 'is_hot', '是否设为热门', '', ['禁用', '启用'], 1],
+                ['switch', 'can_reply', '是否可以回复', '', ['禁用', '启用'], 1],
 
             ])
             ->fetch();
