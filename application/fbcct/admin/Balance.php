@@ -529,9 +529,10 @@ class Balance extends Admin
             "before" => $last_record["after"],
             "amount" => $value - $last_record["after"],
             "after" => $value,
-        ])->insert();
+        ])->getLastSql();
+
         if (!$res) {
-            $this->error('$bal_fail');
+            $this->error($res);
 
         }
         if (false !== $result) {
