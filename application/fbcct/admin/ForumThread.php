@@ -11,6 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
+use app\fbcct\model\ForumModel;
 use app\fbcct\model\ForumThreadModel;
 use app\fbcct\model\User as UserModel;
 use app\user\model\Role;
@@ -82,12 +83,17 @@ class ForumThread extends Admin
             }
         }
 
-
+        $data = ForumModel::get();
+        $arr = [];
+        foreach ($data as $item) {
+            $arr[$data["name"]] = $data["id"];
+        }
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('新增') // 设置页面标题
             ->addFormItems([ // 批量添加表单项
                 ['select', 'type', '类型', '', ['normal' => 'normal', 'feedback' => 'feedback', 'other' => 'other']],
+                ['select', 'fid', '板块id', '', $arr],
                 ['text', 'fid', '板块id'],
                 ['text', 'uid', 'uid'],
                 ['text', 'tag', '标签'],
