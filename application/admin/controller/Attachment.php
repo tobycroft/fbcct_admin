@@ -154,7 +154,6 @@ class Attachment extends Admin
         ];
         $ch = curl_init();
         print_r($po);
-        die();
 
         curl_setopt($ch, CURLOPT_URL, config('upload_url'));
         curl_setopt($ch, CURLOPT_POST, 1);
