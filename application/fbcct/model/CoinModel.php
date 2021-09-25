@@ -25,17 +25,5 @@ class CoinModel extends Model
     // 自动写入时间戳
     protected $autoWriteTimestamp = true;
 
-    // 对密码进行加密
-    public function setPasswordAttr($value)
-    {
-        return Hash::make((string)$value);
-    }
-
-    // 获取注册ip
-    public function setSignupIpAttr()
-    {
-        return get_client_ip(1);
-    }
-
 
 }
