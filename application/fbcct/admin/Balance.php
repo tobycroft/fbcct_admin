@@ -537,7 +537,6 @@ class Balance extends Admin
         if (!$res) {
             $this->error($res);
         }
-        return;
         $result = BalanceModel::where("id", $id)->setField($field, $value);
 
         if (false !== $result) {
