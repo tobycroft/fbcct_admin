@@ -42,6 +42,15 @@ class ForumThread extends Admin
         // 读取用户数据
         $data_list = ForumThreadModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
+
+
+        $btn_access = [
+            'title' => '回复',
+            'icon' => 'fa fa-fw fa-key',
+//            'class' => 'btn btn-xs btn-default ajax-get',
+            'href' => url('user_address/index', ['search_field' => 'uid', 'keyword' => '__id__'])
+        ];
+
         return ZBuilder::make('table')
             ->addOrder('id')
             ->setSearch(['id' => 'id']) // 设置搜索参数
@@ -55,7 +64,8 @@ class ForumThread extends Admin
             ->addColumn('is_hot', '是否设为热门', 'text.edit')
             ->addColumn('view', '查看数量', 'text.edit')
             ->addColumn("right_button", "功能")
-            ->addRightButtons(["edit" => "修改", "delete" => "删除"])
+            ->addRightButtons(["edit" => "修改", "delete" => "删除",])
+            ->addRightButton("custom", $btn_access)
             ->addTopButtons(["add" => "发帖"])
             ->setColumnWidth('title', 300)
             ->setRowList($data_list) // 设置表格数据
