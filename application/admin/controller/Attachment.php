@@ -145,14 +145,14 @@ class Attachment extends Admin
         }
         $file = $this->request->file($file_input_name);
 //        print_r($file);
-        print_r($file_input_name);
+//        print_r($file_input_name);
 //        print_r($file->getRealPath());
 //        die();
         $po = [
 //            "file" => "@" . $file->getRealPath()
 //            "file" => "@" . $file->getRealPath()
             "sss" => "sss",
-            "file" => $file->getRealPath(),
+            "file" => $file,
         ];
 
         $ch = curl_init();
