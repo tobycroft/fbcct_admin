@@ -46,6 +46,7 @@ class Coin extends Admin
             ->setSearch(['id' => 'id']) // 设置搜索参数
             ->addColumn('id', 'id')
             ->addColumn('type', '币种类型')
+            ->addColumn('img', '图片', 'img_url')
             ->addColumn('price', '币种价格', 'text.edit')
             ->addColumn('name', '币种英文名称')
             ->addColumn('cname', '币种中文名称', 'text.edit')
@@ -64,7 +65,7 @@ class Coin extends Admin
             ->addColumn('transfer_out_time_limit', '可转出几次', 'text.edit')
             ->addColumn('start_time', '开始时间秒', 'text.edit')
             ->addColumn('end_time', '结束时间秒', 'text.edit')
-            ->setColumnWidth(null,150)
+            ->setColumnWidth(null, 150)
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
