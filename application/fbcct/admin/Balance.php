@@ -42,6 +42,7 @@ class Balance extends Admin
         $data_list = BalanceModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
         return ZBuilder::make('table')
+            ->setPageTitle("直接修改余额就能拨币了")
             ->addOrder('id')
             ->setSearch(['uid' => 'UID']) // 设置搜索参数
             ->addColumn('uid', '用户id')
