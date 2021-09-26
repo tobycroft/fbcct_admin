@@ -45,6 +45,7 @@ class InvestLevel extends Admin
             ->addOrder('level')
             ->addColumn('level', '等级')
             ->addColumn('percent', '比率', 'text.edit')
+            ->addColumn('amount', '达量', 'number')
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
