@@ -42,7 +42,7 @@ class InvestLevel extends Admin
         $data_list = InvestLevelModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
         return ZBuilder::make('table')
-            ->addOrder('id')
+            ->addOrder('level')
             ->addColumn('level', '等级')
             ->addColumn('percent', '比率', 'text.edit')
             ->setRowList($data_list) // 设置表格数据
