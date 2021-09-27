@@ -9,6 +9,7 @@
 
 namespace app\admin\controller;
 
+use Aoss\Aoss;
 use app\admin\model\Attachment as AttachmentModel;
 use app\common\builder\ZBuilder;
 use think\Db;
@@ -145,22 +146,14 @@ class Attachment extends Admin
         }
         $file = $this->request->file($file_input_name);
         $file_name = $file->getInfo('name');
-        $postData = [
-            'file' => new \CURLFile(realpath($file->getPathname()), $file->getMime(), $file_name),
-        ];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, config("upload_url"));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-        $response = curl_exec($ch);
-        curl_close($ch);
-//        exit($response);
-        $json_send = json_decode($response, 320);
-        if ($json_send["code"] != "0") {
+
+        $send_file = new Aoss();
+        $send_file->send_url = config("upload_url");
+        $send_ret = $send_file->send($file->getPathname(), $file->getMime(), $file_name);
+        if (!$send_ret) {
             return $this->uploadError($from, config('upload_url'), $callback);
         }
-        $file_path = $json_send['path'];
+        $file_path = $send_ret;
         // 判断附件是否已存在
         if ($file_exists = AttachmentModel::get(['md5' => $file->hash('md5')])) {
 //            if ($file_exists['driver'] == 'local') {
