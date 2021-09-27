@@ -1,4 +1,4 @@
-DolphinPHP
+DThinkPHP
 ===============
 
 # 图片裁剪临时目录
