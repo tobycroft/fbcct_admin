@@ -47,7 +47,7 @@ class Type extends Admin
             ->addColumn('id', 'id')
             ->addColumn('pid', '上级板块id', 'text.edit')
             ->addColumn('group', '分组', 'text.edit')
-            ->addColumn('name', '名称', 'text.edit')
+            ->addColumn('name', '名称(一般用于显示)', 'text.edit')
             ->addColumn('direction', '图标', 'select', ['in' => '进', 'out' => '出', 'pay' => '支付', 'exchange' => '兑换'])
             ->addColumn('rank', '排序优先级', 'text.edit')
             ->setColumnWidth(null, 150)
