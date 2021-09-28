@@ -46,10 +46,10 @@ class Type extends Admin
             ->setSearch(['id' => 'id']) // 设置搜索参数
             ->addColumn('id', 'id')
             ->addColumn('pid', '上级板块id', 'text.edit')
-            ->addColumn('name', '板块名称', 'text.edit')
-            ->addColumn('info', '币种中文名称', 'text.edit')
-            ->addColumn('is_show', '是否展示', 'text.edit')
-            ->addColumn('is_private', '尽自己可见', 'text.edit')
+            ->addColumn('group', '分组', 'text.edit')
+            ->addColumn('name', '名称', 'text.edit')
+            ->addColumn('direction', '图标', 'select', ['in' => '进', 'out' => '出', 'pay' => '支付', 'exchange' => '兑换'])
+            ->addColumn('rank', '排序优先级', 'text.edit')
             ->setColumnWidth(null, 150)
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
