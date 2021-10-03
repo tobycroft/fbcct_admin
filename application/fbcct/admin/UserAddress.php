@@ -38,7 +38,7 @@ class UserAddress extends Admin
         $order = $this->getOrder();
         $map = $this->getMap();
         $map2 = [
-//            "type" => "eth"
+            "type" => ["eth", "trc"]
         ];
 
         // 读取用户数据
