@@ -44,7 +44,7 @@ class Balance extends Admin
         return ZBuilder::make('table')
             ->setSearchArea([
                 ['text', 'uid', 'UID'],
-                ['select', 'cid', ["1" => "1", "2" => "2", "3" => "3"]],
+                ['select', 'cid', 'cid', "", "", ["1" => "1", "2" => "2", "3" => "3"]],
             ])
             ->setPageTitle("直接修改余额就能拨币了")
             ->addOrder('id')
