@@ -39,7 +39,8 @@ class User extends Admin
         $data_list = UserModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
         $todaytime = date('Y-m-d H:i:s', strtotime(date("Y-m-d"), time()));
-        $num1 = UserModel::where(["date" => $todaytime])->count();
+
+        $num1 = UserModel::where("date", ">", $todaytime)->count();
         $num2 = UserModel::count();
 
         $btn_access = [
