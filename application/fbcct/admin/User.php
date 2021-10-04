@@ -39,7 +39,7 @@ class User extends Admin
         $data_list = UserModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
         $todaytime = date('Y-m-d H:i:s', strtotime(date("Y-m-d"), time()));
-        $num = UserModel::where(["date" => $todaytime])->count();
+        $num = UserModel::where(["date" => $todaytime])->select();
 
         $btn_access = [
             'title' => '用户地址',
@@ -49,7 +49,7 @@ class User extends Admin
         ];
 
         return ZBuilder::make('table')
-            ->setPageTips($num, 'danger', 'top')
+            ->setPageTips($num, 'danger')
             ->setPageTitle('列表')
             ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
             ->addOrder('id')
