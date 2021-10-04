@@ -11,6 +11,8 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
+use app\fbcct\model\TransferInModel;
+use app\fbcct\model\TransferRecordModel;
 use app\fbcct\model\User as UserModel;
 use util\Tree;
 use think\Db;
@@ -42,6 +44,8 @@ class Index extends Admin
 
         $num1 = UserModel::where("date", ">", $todaytime)->count();
         $num2 = UserModel::count();
+        $sum_amount = TransferInModel::sum("amount");
+        $out_amount = TransferRecordModel::sum("amount");
 
         $btn_access = [
             'title' => '用户地址',
@@ -53,8 +57,8 @@ class Index extends Admin
         return ZBuilder::make('form')
             ->addStatic('today', '今日注册数量', "", $num1)
             ->addStatic('today', '全部注册数量', "", $num2)
-            ->addStatic('today', '总入金', "", $num2)
-            ->addStatic('today', '总出金', "", $num2)
+            ->addStatic('today', '总入金', "", $sum_amount)
+            ->addStatic('today', '总出金', "", $out_amount)
             ->addStatic('today', '今日入', "", $num2)
             ->addStatic('today', '今日出', "", $num2)
             ->hideBtn('submit,back')
