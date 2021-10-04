@@ -56,7 +56,7 @@ class TransferIn extends Admin
             ->setSearchArea([
                 ['daterange', 'date', '日期'],
             ])
-            ->setSearch(['uid' => 'uid', 'id' => 'id', 'order_id' => 'order_id', 'from_address' => '外转地址']) // 设置搜索参数
+            ->setSearch(['uid' => 'uid', 'id' => 'id', 'order_id' => 'order_id', 'from_address' => '地址']) // 设置搜索参数
             ->addColumn('id', 'id')
             ->addColumn('uid', 'uid')
             ->addColumn('cid', '币种ID')
