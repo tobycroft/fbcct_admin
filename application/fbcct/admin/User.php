@@ -47,6 +47,8 @@ class User extends Admin
         ];
 
         return ZBuilder::make('table')
+            ->setPageTips('这是页面提示信息', 'danger', 'bottom')
+            ->setPageTitle('列表')
             ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
             ->addOrder('id')
             ->addColumn('id', 'UID')
@@ -181,8 +183,6 @@ class User extends Admin
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('编辑') // 设置页面标题
-            ->setPageTips('这是页面提示信息', 'danger', 'bottom')
-            ->setPageTitle('列表')
             ->addFormItems([ // 批量添加表单项
                 ['hidden', 'id'],
                 ['static', 'username', '用户名', '不可更改'],
