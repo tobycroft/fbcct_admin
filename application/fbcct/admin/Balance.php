@@ -43,11 +43,12 @@ class Balance extends Admin
         $page = $data_list->render();
         return ZBuilder::make('table')
             ->setSearchArea([
-                ['daterange', 'date', '日期'],
+                ['number', 'uid', 'UID'],
+                ['number', 'cid', '币种ID'],
             ])
             ->setPageTitle("直接修改余额就能拨币了")
             ->addOrder('id')
-            ->setSearch(['uid' => 'UID', "cid" => "币种ID"]) // 设置搜索参数
+//            ->setSearch(['uid' => 'UID', "cid" => "币种ID"]) // 设置搜索参数
             ->addColumn('uid', '用户id')
             ->addColumn('cid', '币种id')
             ->addColumn('balance', '余额', 'text.edit')
