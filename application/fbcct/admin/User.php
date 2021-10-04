@@ -61,7 +61,7 @@ class User extends Admin
             ->addColumn('username', '用户名')
             ->addColumn('head_img', '头像', 'img_url')
             ->addColumn('share', '邀请码')
-            ->addColumn('active', '邀请码', "text")
+            ->addColumn('active', '是否启用', "number.edit")
             ->addColumn('change_date', '修改时间')
             ->addColumn('date', '创建时间')
             ->addColumn('right_button', '操作', 'btn')
