@@ -54,6 +54,7 @@ class InvestUser extends Admin
             ->addColumn('on_release', '待释放额度', 'text.edit')
             ->addColumn('amount', '分红权额度', 'text.edit')
             ->addColumn('level', 'vip等级', 'text.edit')
+            ->addColumn('level_amount', '推荐总金额', 'text.edit')
             ->addColumn('num', '推荐人数')
             ->addColumn('change_date', '修改日期')
             ->addColumn('date', '创建日期')
