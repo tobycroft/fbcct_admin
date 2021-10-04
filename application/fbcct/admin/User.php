@@ -11,6 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
+use app\fbcct\model\TypeModel;
 use app\fbcct\model\User as UserModel;
 use util\Tree;
 use think\Db;
@@ -525,21 +526,22 @@ class User extends Admin
     public function quickEdit($record = [])
     {
         $id = input('post.pk', '');
-        $id == UID && $this->error('禁止操作当前账号');
         $field = input('post.name', '');
         $value = input('post.value', '');
 
         // 非超级管理员检查可操作的用户
         if (session('user_auth.role') != 1) {
-            $role_list = RoleModel::getChildsId(session('user_auth.role'));
-            $user_list = UserModel::where('role', 'in', $role_list)->column('id');
+            $role_list = Role::getChildsId(session('user_auth.role'));
+            $user_list = \app\user\model\User::where('role', 'in', $role_list)->column('id');
             if (!in_array($id, $user_list)) {
                 $this->error('权限不足，没有可操作的用户');
             }
         }
-
-        $config = UserModel::where('id', $id)->value($field);
-        $details = '字段(' . $field . ')，原值(' . $config . ')，新值：(' . $value . ')';
-        return parent::quickEdit(['user_edit', 'admin_user', $id, UID, $details]);
+        $result = \app\user\model\User::where("id", $id)->setField($field, $value);
+        if (false !== $result) {
+            $this->success('操作成功');
+        } else {
+            $this->error('操作失败');
+        }
     }
 }
