@@ -52,6 +52,7 @@ class Index extends Admin
 
         return ZBuilder::make('form')
             ->addStatic('today', '今日注册数量', "", $num1)
+            ->addStatic('today', '全部注册数量', "", $num2)
             ->hideBtn('submit,back')
             ->fetch();
     }
