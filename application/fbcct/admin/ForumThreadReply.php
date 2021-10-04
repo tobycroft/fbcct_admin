@@ -442,16 +442,6 @@ class ForumThreadReply extends Admin
         $ids = (array)$ids;
 
         // 当前用户所能操作的用户
-        $role_list = RoleModel::getChildsId(session('user_auth.role'));
-        $user_list = UserModel::where('role', 'in', $role_list)->column('id');
-        if (session('user_auth.role') != 1 && !$user_list) {
-            $this->error('权限不足，没有可操作的用户');
-        }
-
-        $ids = array_intersect($user_list, $ids);
-        if (!$ids) {
-            $this->error('权限不足，没有可操作的用户');
-        }
 
         switch ($type) {
             case 'enable':
