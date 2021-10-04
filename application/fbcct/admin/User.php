@@ -47,7 +47,7 @@ class User extends Admin
         ];
 
         return ZBuilder::make('table')
-            ->setPageTips('这是页面提示信息', 'danger', 'bottom')
+            ->setPageTips('这是页面提示信息', 'danger', 'top')
             ->setPageTitle('列表')
             ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
             ->addOrder('id')
