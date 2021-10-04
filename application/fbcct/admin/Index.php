@@ -50,9 +50,9 @@ class Index extends Admin
             'href' => url('user_address/index', ['search_field' => 'uid', 'keyword' => '__id__'])
         ];
 
-        return ZBuilder::make('aside')
+        ZBuilder::make('aside')
             ->addBlock('online', '总数量', $num1)
-            ->fetch();
+        return ZBuilder::make('form')->setPageTitle('添加')->fetch();
     }
 
 
