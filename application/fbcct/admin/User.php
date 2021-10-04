@@ -182,6 +182,7 @@ class User extends Admin
         return ZBuilder::make('form')
             ->setPageTitle('编辑') // 设置页面标题
             ->setPageTips('这是页面提示信息', 'danger', 'bottom')
+            ->setPageTitle('列表')
             ->addFormItems([ // 批量添加表单项
                 ['hidden', 'id'],
                 ['static', 'username', '用户名', '不可更改'],
