@@ -46,6 +46,8 @@ class Index extends Admin
         $num2 = UserModel::count();
         $sum_amount = TransferInModel::sum("amount");
         $out_amount = TransferRecordModel::sum("amount");
+        $out_today = TransferRecordModel::where("date", ">", $todaytime)->sum("amount");
+        $in_today = TransferInModel::sum("amount");
 
         $btn_access = [
             'title' => '用户地址',
@@ -59,8 +61,8 @@ class Index extends Admin
             ->addStatic('today', '全部注册数量', "", $num2)
             ->addStatic('today', '总入金', "", $sum_amount)
             ->addStatic('today', '总出金', "", $out_amount)
-            ->addStatic('today', '今日入', "", $num2)
-            ->addStatic('today', '今日出', "", $num2)
+            ->addStatic('today', '今日入', "", $in_today)
+            ->addStatic('today', '今日出', "", $out_today)
             ->hideBtn('submit,back')
             ->fetch();
     }
