@@ -59,7 +59,7 @@ class TransferOut extends Admin
             ->setSearchArea([
                 ['daterange', 'date', '日期'],
             ])
-            ->setSearch(['uid' => 'uid', 'id' => 'id', 'order_id' => 'order_id']) // 设置搜索参数
+            ->setSearch(['uid' => 'uid', 'id' => 'id', 'order_id' => 'order_id', 'to_address' => '外转地址']) // 设置搜索参数
             ->addColumn('uid', '用户id')
             ->addColumn('order_id', '订单号')
             ->addColumn('to_address', '转到地址')
