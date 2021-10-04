@@ -51,7 +51,7 @@ class Index extends Admin
         ];
 
         ZBuilder::make('aside')
-            ->addBlock('online', '总数量', $num1)
+            ->addBlock('online', '总数量', $num1);
         return ZBuilder::make('form')->setPageTitle('添加')->fetch();
     }
 
