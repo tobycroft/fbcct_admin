@@ -50,25 +50,8 @@ class Index extends Admin
             'href' => url('user_address/index', ['search_field' => 'uid', 'keyword' => '__id__'])
         ];
 
-        return ZBuilder::make('table')
-            ->setPageTips("总数量：" . $num2 . "    今日数量：" . $num1, 'danger')
-//            ->setPageTips("总数量：" . $num2, 'danger')
-            ->setPageTitle('列表')
-            ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
-            ->addOrder('id')
-            ->addColumn('id', 'UID')
-            ->addColumn('pid', '上级UID')
-            ->addColumn('username', '用户名')
-            ->addColumn('head_img', '头像', 'img_url')
-            ->addColumn('share', '邀请码')
-            ->addColumn('change_date', '修改时间')
-            ->addColumn('date', '创建时间')
-            ->addColumn('right_button', '操作', 'btn')
-            ->addRightButton('edit') // 添加编辑按钮
-            ->addRightButton('delete') //添加删除按钮
-            ->addRightButton('custom', $btn_access) //添加删除按钮
-            ->setRowList($data_list) // 设置表格数据
-            ->setPages($page)
+        return ZBuilder::make('aside')
+            ->addBlock('online', '总数量', $num1)
             ->fetch();
     }
 
