@@ -41,7 +41,7 @@ class InvestUser extends Admin
         // 读取用户数据
         $data_list = InvestUserModel::where($map)->order($order)->paginate();
         foreach ($data_list as $k => $v) {
-            $v["num"] = \app\user\model\User::where(["pid" => $v["uid"]])->count();
+            $v["num"] = \app\fbcct\model\User::where(["pid" => $v["uid"]])->count();
             $data_list[$k] = $v;
         }
         $page = $data_list->render();
