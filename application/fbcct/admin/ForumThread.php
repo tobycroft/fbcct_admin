@@ -13,7 +13,6 @@ use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\fbcct\model\ForumModel;
 use app\fbcct\model\ForumThreadModel;
-use app\fbcct\model\User as UserModel;
 use app\user\model\Role;
 use util\Tree;
 use think\Db;
