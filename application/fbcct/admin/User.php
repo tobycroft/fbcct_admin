@@ -512,7 +512,6 @@ class User extends Admin
                 $this->error('非法操作');
         }
 
-        action_log('user_' . $type, 'admin_user', '', UID);
 
         $this->success('操作成功');
     }
