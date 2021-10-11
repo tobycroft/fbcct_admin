@@ -31,6 +31,7 @@ class ComputeList extends Admin {
 	 * @throws \think\exception\DbException
 	 * @author 蔡伟明 <314013107@qq.com>
 	 */
+
 	public function index() {
 		// 获取排序
 		$order = $this->getOrder("id desc");
