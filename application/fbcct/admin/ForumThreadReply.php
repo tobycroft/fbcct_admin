@@ -13,7 +13,6 @@ use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\fbcct\model\ForumModel;
 use app\fbcct\model\ForumThreadReplyModel;
-use app\fbcct\model\User as UserModel;
 use app\user\model\Role;
 use util\Tree;
 use think\Db;
@@ -123,7 +122,7 @@ class ForumThreadReply extends Admin
         // 非超级管理员检查可编辑用户
         if (session('user_auth.role') != 1) {
             $role_list = RoleModel::getChildsId(session('user_auth.role'));
-            $user_list = UserModel::where('role', 'in', $role_list)->column('id');
+            $user_list = ForumThreadReplyModel::where('role', 'in', $role_list)->column('id');
             if (!in_array($id, $user_list)) {
                 $this->error('权限不足，没有可操作的用户');
             }
@@ -180,7 +179,7 @@ class ForumThreadReply extends Admin
         // 非超级管理员检查可编辑用户
         if (session('user_auth.role') != 1) {
             $role_list = RoleModel::getChildsId(session('user_auth.role'));
-            $user_list = UserModel::where('role', 'in', $role_list)->column('id');
+            $user_list = ForumThreadReplyModel::where('role', 'in', $role_list)->column('id');
             if (!in_array($uid, $user_list)) {
                 $this->error('权限不足，没有可操作的用户');
             }
@@ -445,17 +444,17 @@ class ForumThreadReply extends Admin
 
         switch ($type) {
             case 'enable':
-                if (false === UserModel::where('id', 'in', $ids)->setField('status', 1)) {
+                if (false === ForumThreadReplyModel::where('id', 'in', $ids)->setField('status', 1)) {
                     $this->error('启用失败');
                 }
                 break;
             case 'disable':
-                if (false === UserModel::where('id', 'in', $ids)->setField('status', 0)) {
+                if (false === ForumThreadReplyModel::where('id', 'in', $ids)->setField('status', 0)) {
                     $this->error('禁用失败');
                 }
                 break;
             case 'delete':
-                if (false === UserModel::where('id', 'in', $ids)->delete()) {
+                if (false === ForumThreadReplyModel::where('id', 'in', $ids)->delete()) {
                     $this->error('删除失败');
                 }
                 break;
