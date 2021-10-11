@@ -12,7 +12,7 @@ namespace app\fbcct\admin;
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\fbcct\model\ForumModel;
-use app\fbcct\model\ForumThreadModel;
+use app\fbcct\model\ComputeOrderModel;
 use app\user\model\Role;
 use util\Tree;
 use think\Db;
@@ -37,7 +37,7 @@ class ComputeOrder extends Admin {
 		$map = $this->getMap();
 
 		// 读取用户数据
-		$data_list = ForumThreadModel::where($map)->order($order)->paginate();
+		$data_list = ComputeOrderModel::where($map)->order($order)->paginate();
 		$page = $data_list->render();
 
 
@@ -82,7 +82,7 @@ class ComputeOrder extends Admin {
 		if ($this->request->isPost()) {
 			$data = $this->request->post();
 
-			if ($user = ForumThreadModel::create($data)) {
+			if ($user = ComputeOrderModel::create($data)) {
 				$this->success('新增成功', url('index'));
 			} else {
 				$this->error('新增失败');
@@ -131,7 +131,7 @@ class ComputeOrder extends Admin {
 		// 非超级管理员检查可编辑用户
 		if (session('user_auth.role') != 1) {
 			$role_list = RoleModel::getChildsId(session('user_auth.role'));
-			$user_list = ForumThreadModel::where('role', 'in', $role_list)->column('id');
+			$user_list = ComputeOrderModel::where('role', 'in', $role_list)->column('id');
 			if (!in_array($id, $user_list)) {
 				$this->error('权限不足，没有可操作的用户');
 			}
@@ -144,7 +144,7 @@ class ComputeOrder extends Admin {
 			// 非超级管理需要验证可选择角色
 
 
-			if (ForumThreadModel::update($data)) {
+			if (ComputeOrderModel::update($data)) {
 				$this->success('编辑成功');
 			} else {
 				$this->error('编辑失败');
@@ -152,7 +152,7 @@ class ComputeOrder extends Admin {
 		}
 
 		// 获取数据
-		$info = ForumThreadModel::where('id', $id)->find();
+		$info = ComputeOrderModel::where('id', $id)->find();
 
 		// 使用ZBuilder快速创建表单
 		return ZBuilder::make('form')
@@ -192,7 +192,7 @@ class ComputeOrder extends Admin {
 		// 非超级管理员检查可编辑用户
 		if (session('user_auth.role') != 1) {
 			$role_list = RoleModel::getChildsId(session('user_auth.role'));
-			$user_list = ForumThreadModel::where('role', 'in', $role_list)->column('id');
+			$user_list = ComputeOrderModel::where('role', 'in', $role_list)->column('id');
 			if (!in_array($uid, $user_list)) {
 				$this->error('权限不足，没有可操作的用户');
 			}
@@ -450,17 +450,17 @@ class ComputeOrder extends Admin {
 
 		switch ($type) {
 			case 'enable':
-				if (false === ForumThreadModel::where('id', 'in', $ids)->setField('status', 1)) {
+				if (false === ComputeOrderModel::where('id', 'in', $ids)->setField('status', 1)) {
 					$this->error('启用失败');
 				}
 				break;
 			case 'disable':
-				if (false === ForumThreadModel::where('id', 'in', $ids)->setField('status', 0)) {
+				if (false === ComputeOrderModel::where('id', 'in', $ids)->setField('status', 0)) {
 					$this->error('禁用失败');
 				}
 				break;
 			case 'delete':
-				if (false === ForumThreadModel::where('id', 'in', $ids)->delete()) {
+				if (false === ComputeOrderModel::where('id', 'in', $ids)->delete()) {
 					$this->error('删除失败');
 				}
 				break;
@@ -492,7 +492,7 @@ class ComputeOrder extends Admin {
 				$this->error('权限不足，没有可操作的用户');
 			}
 		}
-		$result = ForumThreadModel::where("id", $id)->setField($field, $value);
+		$result = ComputeOrderModel::where("id", $id)->setField($field, $value);
 		if (false !== $result) {
 			$this->success('操作成功');
 		} else {
