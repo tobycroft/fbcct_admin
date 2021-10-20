@@ -34,7 +34,7 @@ class User extends Admin
     public function index()
     {
         // 获取排序
-        $order = $this->getOrder();
+        $order = $this->getOrder("id asc");
         $map = $this->getMap();
         // 读取用户数据
         $data_list = UserModel::where($map)->order($order)->paginate();
@@ -55,7 +55,7 @@ class User extends Admin
             ->setPageTips("总数量：" . $num2 . "    今日数量：" . $num1, 'danger')
 //            ->setPageTips("总数量：" . $num2, 'danger')
             ->setPageTitle('列表')
-            ->setSearch(['id' => 'ID', 'username' => '用户名']) // 设置搜索参数
+            ->setSearch(['id' => 'ID','pid' => '上级id', 'username' => '用户名']) // 设置搜索参数
             ->addOrder('id')
             ->addColumn('id', 'UID')
             ->addColumn('pid', '上级UID')
