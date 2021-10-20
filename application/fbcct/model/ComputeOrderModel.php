@@ -17,13 +17,12 @@ use think\Db;
  * 后台用户模型
  * @package app\admin\model
  */
-class User extends Model {
+class ComputeOrderModel extends Model {
 	// 设置当前模型对应的完整数据表名称
-	protected $table = 'fb_user';
-
-	// 设置当前模型对应的完整数据表名称
+	protected $table = 'compute_order';
 
 	// 自动写入时间戳
 	protected $autoWriteTimestamp = true;
+
 
 }
