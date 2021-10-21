@@ -51,7 +51,7 @@ class Trend extends Admin
             ->addColumn('cid', '币种ID')
             ->addColumn('date', '日期', 'text.edit')
             ->addColumn("right_button", "功能")
-            ->addRightButtons(["edit" => "修改", "delete" => "删除",])
+            ->addRightButtons([ "delete" => "删除",])
             ->addTopButtons(["add" => "发帖"])
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
