@@ -49,7 +49,7 @@ class Trend extends Admin
             ->addColumn('id', 'id')
             ->addColumn('price', '价格', 'text.edit')
             ->addColumn('cid', '币种ID')
-            ->addColumn('date', '日期', 'datetime.edit')
+            ->addColumn('date', '日期', 'text.edit')
             ->addColumn("right_button", "功能")
             ->addRightButtons(["edit" => "修改", "delete" => "删除",])
             ->addTopButtons(["add" => "发帖"])
