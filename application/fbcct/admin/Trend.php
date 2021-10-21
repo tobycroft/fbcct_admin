@@ -43,13 +43,6 @@ class Trend extends Admin
         $page = $data_list->render();
 
 
-        $btn_access = [
-            'title' => '回复',
-            'icon' => 'fa fa-fw fa-key',
-//            'class' => 'btn btn-xs btn-default ajax-get',
-            'href' => url('forum_thread_reply/index', ['search_field' => 'uid', 'keyword' => '__id__'])
-        ];
-
         return ZBuilder::make('table')
             ->addOrder('id')
             ->setSearch(['cid' => 'CID']) // 设置搜索参数
@@ -59,9 +52,7 @@ class Trend extends Admin
             ->addColumn('date', '日期', 'datetime')
             ->addColumn("right_button", "功能")
             ->addRightButtons(["edit" => "修改", "delete" => "删除",])
-            ->addRightButton("custom", $btn_access)
             ->addTopButtons(["add" => "发帖"])
-            ->setColumnWidth('title', 300)
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
             ->fetch();
