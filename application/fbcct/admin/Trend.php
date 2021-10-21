@@ -52,7 +52,7 @@ class Trend extends Admin
 
         return ZBuilder::make('table')
             ->addOrder('id')
-            ->setSearch(['id' => 'id']) // 设置搜索参数
+            ->setSearch(['cid' => 'CID']) // 设置搜索参数
             ->addColumn('id', 'id')
             ->addColumn('price', '价格', 'text.edit')
             ->addColumn('cid', '币种ID')
