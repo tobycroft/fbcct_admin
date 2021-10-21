@@ -48,7 +48,7 @@ class Trend extends Admin
             ->setSearch(['cid' => 'CID']) // 设置搜索参数
             ->addColumn('id', 'id')
             ->addColumn('price', '价格', 'text.edit')
-            ->addColumn('cid', '币种ID')
+            ->addColumn('cid', '币种ID',"text.edit")
             ->addColumn('date', '日期', 'text.edit')
             ->addColumn("right_button", "功能")
             ->addRightButtons([ "delete" => "删除",])
