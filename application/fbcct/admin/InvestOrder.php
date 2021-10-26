@@ -52,7 +52,7 @@ class InvestOrder extends Admin
             ->addColumn('left_amount', '剩余量', 'text.edit')
             ->addColumn('deploy_amount', '已经释放的量', 'text.edit')
             ->addColumn('generation', '第几周', 'text.edit')
-            ->addColumn('last_exec', '最后更新日期', 'text.edit')
+            ->addColumn('last_exec', '下次执行时间', 'text.edit')
             ->addColumn('change_date', '修改日期')
             ->addColumn('date', '创建日期')
             ->setRowList($data_list) // 设置表格数据
