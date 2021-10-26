@@ -42,7 +42,7 @@ class BalanceRecord extends Admin
         $data_list = BalanceRecordModel::where($map)->order($order)->paginate();
         $page = $data_list->render();
         return ZBuilder::make('table')
-            ->setSearch(['uid' => 'UID', "order_id" => "订单号","cid"=>"币种搜索","remark1"=>"备注搜索"]) // 设置搜索参数
+            ->setSearch(['uid' => 'UID', "order_id" => "订单号","cid"=>"币种搜索","remark1"=>"备注1搜索"]) // 设置搜索参数
             ->setSearchArea([
                 ['daterange', 'date', '日期'],
             ])
