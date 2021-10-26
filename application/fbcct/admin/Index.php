@@ -47,7 +47,7 @@ class Index extends Admin
         $sum_amount = TransferInModel::sum("amount");
         $out_amount = TransferRecordModel::sum("amount");
         $out_today = TransferRecordModel::where("date", ">", $todaytime)->sum("amount");
-        $in_today = TransferInModel::sum("amount");
+        $in_today = TransferInModel::where("date > CURRENT_DATE")->sum("amount");
 
         $btn_access = [
             'title' => '用户地址',
