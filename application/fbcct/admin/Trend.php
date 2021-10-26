@@ -87,7 +87,7 @@ class Trend extends Admin
         return ZBuilder::make('form')
             ->setPageTitle('新增') // 设置页面标题
             ->addFormItems([ // 批量添加表单项
-                ['text', 'CID', '币种ID'],
+                ['text', 'cid', '币种ID'],
                 ['text', 'price', '币种价格'],
                 ['datetime', 'date', '日期'],
             ])
