@@ -89,8 +89,7 @@ class Trend extends Admin
             ->addFormItems([ // 批量添加表单项
                 ['text', 'CID', '币种ID'],
                 ['text', 'price', '币种价格'],
-                ['text', 'date', '日期'],
-
+                ['datetime', 'date', '日期'],
             ])
             ->fetch();
     }
