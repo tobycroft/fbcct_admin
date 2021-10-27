@@ -51,6 +51,11 @@ class ComputeRecord extends Admin {
 		return ZBuilder::make('table')
 			->addOrder('id')
 			->setSearch(['id' => 'id',"uid"=>"UID"]) // 设置搜索参数
+            ->setSearchArea([
+                ['daterange', 'date', '日期'],
+                ['text', 'uid', 'UID'],
+                ['rid', 'rid', '释放矿机的id'],
+            ])
 			->addColumn('id', 'id')
 			->addColumn('uid', 'uid')
 			->addColumn('rid', 'rid')
