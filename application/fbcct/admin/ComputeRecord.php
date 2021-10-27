@@ -50,7 +50,7 @@ class ComputeRecord extends Admin {
 
 		return ZBuilder::make('table')
 			->addOrder('id')
-			->setSearch(['id' => 'id']) // 设置搜索参数
+			->setSearch(['id' => 'id',"uid"=>"UID"]) // 设置搜索参数
 			->addColumn('id', 'id')
 			->addColumn('uid', 'uid')
 			->addColumn('rid', 'rid')
