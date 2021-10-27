@@ -12,6 +12,7 @@ namespace app\fbcct\admin;
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\fbcct\model\Balance as BalanceModel;
+use app\fbcct\model\CoinModel;
 use app\fbcct\model\User as UserModel;
 use app\user\model\Role;
 use util\Tree;
@@ -40,11 +41,16 @@ class Balance extends Admin
 
         // 读取用户数据
         $data_list = BalanceModel::where($map)->order($order)->paginate();
+        $coins=CoinModel::select();
         $page = $data_list->render();
+        $coin=[];
+        foreach ($coins as $k=>$v){
+            $coin[$v["id"]]=$v["name"];
+        }
         return ZBuilder::make('table')
             ->setSearchArea([
                 ['text', 'uid', 'UID'],
-                ['select', 'cid', 'cid', "", "", ["1" => "1", "2" => "2", "3" => "3"]],
+                ['select', 'cid', 'cid', "", "", $coin],
             ])
             ->setPageTitle("直接修改余额就能拨币了")
             ->addOrder('id')
