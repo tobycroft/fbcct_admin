@@ -54,7 +54,7 @@ class ComputeRecord extends Admin {
             ->setSearchArea([
                 ['daterange', 'date', '日期'],
                 ['text', 'uid', 'UID'],
-                ['rid', 'rid', '释放矿机的id'],
+                ['text', 'rid', '释放矿机的id'],
             ])
 			->addColumn('id', 'id')
 			->addColumn('uid', 'uid')
