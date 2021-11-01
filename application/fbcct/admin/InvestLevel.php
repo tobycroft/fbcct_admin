@@ -514,6 +514,7 @@ class InvestLevel extends Admin
         }
         $result = InvestLevelModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('invest_level_edit', 'invest_level', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');

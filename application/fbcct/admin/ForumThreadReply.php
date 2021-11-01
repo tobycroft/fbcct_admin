@@ -492,6 +492,7 @@ class ForumThreadReply extends Admin
         }
         $result = ForumThreadReplyModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('thread_reply_edit', 'forum_thread_reply', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');

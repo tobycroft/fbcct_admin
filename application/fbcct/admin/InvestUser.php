@@ -526,6 +526,7 @@ class InvestUser extends Admin
         }
         $result = InvestUserModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('invest_user_edit', 'invest_user', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');

@@ -514,6 +514,7 @@ class InvestMode extends Admin
         }
         $result = InvestModeModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('invest_mode_edit', 'invest_mode', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');

@@ -523,6 +523,7 @@ class InvestOrder extends Admin
         }
         $result = InvestOrderModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('invest_order_edit', 'invest_order', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');

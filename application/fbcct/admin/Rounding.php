@@ -141,6 +141,7 @@ class Rounding extends Admin
 
 
             if (RoundingModel::update($data)) {
+                action_log('rounding_edit', 'rounding', $id, UID);
                 $this->success('编辑成功');
             } else {
                 $this->error('编辑失败');
@@ -502,6 +503,7 @@ class Rounding extends Admin
         }
         $result = RoundingModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('rounding_edit', 'rounding', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');

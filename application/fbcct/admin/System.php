@@ -512,6 +512,7 @@ class System extends Admin
         }
         $result = SystemParam::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('system_param_edit', 'system_param', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');
