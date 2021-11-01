@@ -174,7 +174,8 @@ class User extends Admin {
 			if (UserModel::update($data)) {
 				$user = UserModel::get($data['id']);
 				// 记录行为
-				$this->success('编辑成功');
+                action_log('user_edit', 'user', $id, UID);
+                $this->success('编辑成功');
 			} else {
 				$this->error('编辑失败');
 			}
@@ -431,7 +432,8 @@ class User extends Admin {
 	 */
 	public function delete($ids = []) {
 		Hook::listen('user_delete', $ids);
-		return $this->setStatus('delete');
+        action_log('user_delete', 'user', $ids, UID);
+        return $this->setStatus('delete');
 	}
 
 	/**
@@ -516,7 +518,8 @@ class User extends Admin {
 		}
 		$result = \app\user\model\User::where("id", $id)->setField($field, $value);
 		if (false !== $result) {
-			$this->success('操作成功');
+            action_log('user_edit', 'user', $id, UID);
+            $this->success('操作成功');
 		} else {
 			$this->error('操作失败');
 		}
