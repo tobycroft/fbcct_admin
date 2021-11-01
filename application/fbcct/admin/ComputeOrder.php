@@ -48,6 +48,7 @@ class ComputeOrder extends Admin {
 			'href' => url('forum_thread_reply/index', ['search_field' => 'uid', 'keyword' => '__id__'])
 		];
 
+
 		return ZBuilder::make('table')
 			->addOrder('id')
 			->setSearch(['id' => 'id',"uid"=>"UID"]) // 设置搜索参数
