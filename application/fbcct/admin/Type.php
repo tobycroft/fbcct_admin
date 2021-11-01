@@ -519,6 +519,7 @@ class Type extends Admin
         }
         $result = TypeModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('type_edit', 'type', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');
