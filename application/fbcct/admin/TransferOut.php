@@ -513,21 +513,25 @@ class TransferOut extends Admin
         switch ($type) {
             case 'enable':
                 if (false === TransferRecordModel::where('id', 'in', $ids)->setField('approved', 1)) {
+                    action_log('transfer_out_approved', 'transfer_record', $ids, UID);
                     $this->error('启用失败');
                 }
                 break;
             case 'disable':
                 if (false === TransferRecordModel::where('id', 'in', $ids)->setField('approved', -1)) {
+                    action_log('transfer_out_denided', 'transfer_record', $ids, UID);
                     $this->error('禁用失败');
                 }
                 break;
             case 'yes':
                 if (false === TransferRecordModel::where('id', 'in', $ids)->setField('status', 1)) {
+                    action_log('transfer_out_compete', 'transfer_record', $ids, UID);
                     $this->error('启用失败');
                 }
                 break;
             case 'no':
                 if (false === TransferRecordModel::where('id', 'in', $ids)->setField('status', -1)) {
+                    action_log('transfer_out_refund', 'transfer_record', $ids, UID);
                     $this->error('禁用失败');
                 }
                 break;
