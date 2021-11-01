@@ -515,6 +515,7 @@ class CoinRatio extends Admin
         }
         $result = CoinRatioModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('edit_ratio', 'coin_ratio', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');
