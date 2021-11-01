@@ -150,6 +150,7 @@ class ForumThread extends Admin
 
 
             if (ForumThreadModel::update($data)) {
+                action_log('thread_edit', 'forum_thread', $id, UID);
                 $this->success('编辑成功');
             } else {
                 $this->error('编辑失败');
@@ -415,6 +416,7 @@ class ForumThread extends Admin
     public function delete($ids = [])
     {
         Hook::listen('user_delete', $ids);
+        action_log('thread_delete', 'forum_thread', $ids, UID);
         return $this->setStatus('delete');
     }
 
