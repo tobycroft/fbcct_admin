@@ -82,6 +82,7 @@ class ForumThreadReply extends Admin
             $data = $this->request->post();
 
             if ($user = ForumThreadReplyModel::create($data)) {
+                action_log('thread_reply_add', 'forum_thread', $user->getLastInsID(), UID);
                 $this->success('新增成功', url('index'));
             } else {
                 $this->error('新增失败');
@@ -136,6 +137,7 @@ class ForumThreadReply extends Admin
 
 
             if (ForumThreadReplyModel::update($data)) {
+                action_log('thread_reply_edit', 'forum_thread', $id, UID);
                 $this->success('编辑成功');
             } else {
                 $this->error('编辑失败');
@@ -398,6 +400,7 @@ class ForumThreadReply extends Admin
     public function delete($ids = [])
     {
         Hook::listen('user_delete', $ids);
+        action_log('thread_reply_delete', 'forum_thread', $ids, UID);
         return $this->setStatus('delete');
     }
 
