@@ -72,6 +72,8 @@ class Trend extends Admin
             $data = $this->request->post();
 
             if ($user = TrendModel::create($data)) {
+                action_log('trend_add', 'trend', $user->getLastInsID(), UID);
+
                 $this->success('新增成功', url('index'));
             } else {
                 $this->error('新增失败');
@@ -383,6 +385,7 @@ class Trend extends Admin
     public function delete($ids = [])
     {
         Hook::listen('user_delete', $ids);
+        action_log('trend_delete', 'trend', $ids, UID);
         return $this->setStatus('delete');
     }
 
@@ -474,6 +477,7 @@ class Trend extends Admin
         }
         $result = TrendModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('trend_edit', 'trend', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');
