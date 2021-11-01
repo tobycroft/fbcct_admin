@@ -407,7 +407,9 @@ class ComputeList extends Admin {
 	 */
 	public function delete($ids = []) {
 		Hook::listen('user_delete', $ids);
-		return $this->setStatus('delete');
+        action_log('compute_delete', 'admin_user', $ids, UID);
+
+        return $this->setStatus('delete');
 	}
 
 	/**

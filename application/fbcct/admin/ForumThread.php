@@ -86,6 +86,7 @@ class ForumThread extends Admin
             $data = $this->request->post();
 
             if ($user = ForumThreadModel::create($data)) {
+                action_log('thread_add', 'forum_thread', $user->getLastInsID(), UID);
                 $this->success('新增成功', url('index'));
             } else {
                 $this->error('新增失败');
