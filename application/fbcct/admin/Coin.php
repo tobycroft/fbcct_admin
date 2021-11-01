@@ -534,6 +534,7 @@ class Coin extends Admin
         }
         $result = CoinModel::where("id", $id)->setField($field, $value);
         if (false !== $result) {
+            action_log('coin_edit', 'coin', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');
