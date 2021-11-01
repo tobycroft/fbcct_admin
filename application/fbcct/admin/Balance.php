@@ -55,8 +55,8 @@ class Balance extends Admin
             ->setPageTitle("直接修改余额就能拨币了")
             ->addOrder('id')
 //            ->setSearch(['uid' => 'UID', "cid" => "币种ID"]) // 设置搜索参数
-            ->addColumn('uid', '用户id')
             ->addColumn('cid', '币种id')
+            ->addColumn('uid', '用户id')
             ->addColumn('balance', '余额', 'text.edit')
             ->setRowList($data_list) // 设置表格数据
             ->setPages($page)
@@ -554,6 +554,7 @@ class Balance extends Admin
         $result = BalanceModel::where("id", $id)->setField($field, $value);
 
         if (false !== $result) {
+            action_log('edit_balance', 'balance', $id, UID);
             $this->success('操作成功');
         } else {
             $this->error('操作失败');
