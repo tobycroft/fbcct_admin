@@ -62,8 +62,6 @@ class Index extends Admin
 //            'class' => 'btn btn-xs btn-default ajax-get',
             'href' => url('user_address/index', ['search_field' => 'uid', 'keyword' => '__id__'])
         ];
-        print_r($aft_in);
-        die();
 
         return ZBuilder::make('form')
             ->addStatic('today', '今日注册数量', "", $num1)
