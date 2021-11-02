@@ -51,10 +51,10 @@ class Index extends Admin
 //        $aft_today=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date > CURRENT_DATE");
 //        $aft_yesterday=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date BETWEEN FROM_UNIXTIME(UNIX_TIMESTAMP(CURRENT_DATE)-86400) and CURRENT_DATE");
 
-        $aft_in=Db::query("SELECT sum(amount) FROM `fb_exchange_record` where to_cid=4");
-        $aft_out=Db::query("SELECT sum(amount) FROM `fb_exchange_record` where from_cid=4");
-        $aft_out_today=Db::query("SELECT sum(amount) FROM `fb_exchange_record` where from_cid=4 and date > CURRENT_DATE");
-        $aft_in_today=Db::query("SELECT sum(amount) FROM `fb_exchange_record` where to_cid=4 and date > CURRENT_DATE");
+        $aft_in=Db::query("SELECT sum(amount) as amount FROM `fb_exchange_record` where to_cid=4");
+        $aft_out=Db::query("SELECT sum(amount) as amount  FROM `fb_exchange_record` where from_cid=4");
+        $aft_out_today=Db::query("SELECT sum(amount) as amount  FROM `fb_exchange_record` where from_cid=4 and date > CURRENT_DATE");
+        $aft_in_today=Db::query("SELECT sum(amount) as amount  FROM `fb_exchange_record` where to_cid=4 and date > CURRENT_DATE");
         $btn_access = [
             'title' => '用户地址',
             'icon' => 'fa fa-fw fa-key',
@@ -69,7 +69,7 @@ class Index extends Admin
             ->addStatic('today', '总出金', "", $out_amount)
             ->addStatic('today', '今日入', "", $in_today)
             ->addStatic('today', '今日出', "", $out_today)
-            ->addStatic('today', 'AFT总入', "", $aft_in[0]?:0)
+            ->addStatic('today', 'AFT总入', "", $aft_in[0])
             ->addStatic('today', 'AFT总出', "", $aft_out[0]?:0)
             ->addStatic('today', 'AFT今日总入', "", $aft_in_today[0]?:0)
             ->addStatic('today', 'AFT今日总出', "", $aft_out_today[0]?:0)
