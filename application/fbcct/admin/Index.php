@@ -56,7 +56,7 @@ class Index extends Admin
         $aft_in=BalanceRecordModel::where("cid=4 and type=121")->sum("amount");
         $aft_out=ExchangeRecordModel::where("from_cid=4")->sum("amount");
         $aft_out_today=ExchangeRecordModel::where("cid=4 and type=121 and date > CURRENT_DATE")->sum("amount");
-        $aft_in_today=BalanceRecordModel::where("to_cid=4 and date > CURRENT_DATE")->sum("amount");
+        $aft_in_today=BalanceRecordModel::where("cid=4 and date > CURRENT_DATE")->sum("amount");
         $btn_access = [
             'title' => '用户地址',
             'icon' => 'fa fa-fw fa-key',
