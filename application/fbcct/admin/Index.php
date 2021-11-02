@@ -52,9 +52,9 @@ class Index extends Admin
 //        $aft_today=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date > CURRENT_DATE");
 //        $aft_yesterday=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date BETWEEN FROM_UNIXTIME(UNIX_TIMESTAMP(CURRENT_DATE)-86400) and CURRENT_DATE");
 
-        $aft_in=ExchangeRecordModel::where("to_cid=4")->sum("amount");
+        $aft_in=BalanceRecord::where("cid=4 and type=121")->sum("amount");
         $aft_out=ExchangeRecordModel::where("from_cid=4")->sum("amount");
-        $aft_out_today=ExchangeRecordModel::where("from_cid=4 and date > CURRENT_DATE")->sum("amount");
+        $aft_out_today=ExchangeRecordModel::where("cid=4 and type=121 and date > CURRENT_DATE")->sum("amount");
         $aft_in_today=ExchangeRecordModel::where("to_cid=4 and date > CURRENT_DATE")->sum("amount");
         $btn_access = [
             'title' => '用户地址',
