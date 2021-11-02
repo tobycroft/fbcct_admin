@@ -11,6 +11,7 @@ namespace app\fbcct\admin;
 
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
+use app\fbcct\model\ExchangeRecordModel;
 use app\fbcct\model\TransferInModel;
 use app\fbcct\model\TransferRecordModel;
 use app\fbcct\model\User as UserModel;
@@ -51,10 +52,10 @@ class Index extends Admin
 //        $aft_today=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date > CURRENT_DATE");
 //        $aft_yesterday=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date BETWEEN FROM_UNIXTIME(UNIX_TIMESTAMP(CURRENT_DATE)-86400) and CURRENT_DATE");
 
-        $aft_in=Db::query("SELECT sum(amount) as amount FROM `fb_exchange_record` where to_cid=4");
-        $aft_out=Db::query("SELECT sum(amount) as amount  FROM `fb_exchange_record` where from_cid=4");
-        $aft_out_today=Db::query("SELECT sum(amount) as amount  FROM `fb_exchange_record` where from_cid=4 and date > CURRENT_DATE");
-        $aft_in_today=Db::query("SELECT sum(amount) as amount  FROM `fb_exchange_record` where to_cid=4 and date > CURRENT_DATE");
+        $aft_in=ExchangeRecordModel::where("to_cid=4")->sum("amount");
+        $aft_out=ExchangeRecordModel::where("from_cid=4")->sum("amount");
+        $aft_out_today=ExchangeRecordModel::where("from_cid=4 and date > CURRENT_DATE")->sum("amount");
+        $aft_in_today=ExchangeRecordModel::where("to_cid=4 and date > CURRENT_DATE")->sum("amount");
         $btn_access = [
             'title' => '用户地址',
             'icon' => 'fa fa-fw fa-key',
@@ -71,10 +72,10 @@ class Index extends Admin
             ->addStatic('today', '总出金', "", $out_amount)
             ->addStatic('today', '今日入', "", $in_today)
             ->addStatic('today', '今日出', "", $out_today)
-            ->addStatic('today', 'AFT总入', "", $aft_in["amount"]?:0)
-            ->addStatic('today', 'AFT总出', "", $aft_out["amount"]?:0)
-            ->addStatic('today', 'AFT今日总入', "", $aft_in_today["amount"]?:0)
-            ->addStatic('today', 'AFT今日总出', "", $aft_out_today["amount"]?:0)
+            ->addStatic('today', 'AFT总入', "", $aft_in)
+            ->addStatic('today', 'AFT总出', "", $aft_out)
+            ->addStatic('today', 'AFT今日总入', "", $aft_in_today)
+            ->addStatic('today', 'AFT今日总出', "", $aft_out_today)
             ->hideBtn('submit,back')
             ->fetch();
     }
