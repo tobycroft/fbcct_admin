@@ -48,8 +48,8 @@ class Index extends Admin
         $out_amount = TransferRecordModel::sum("amount");
         $out_today = TransferRecordModel::where("date", ">", $todaytime)->sum("amount");
         $in_today = TransferInModel::where("date > CURRENT_DATE")->sum("amount");
-        $aft_today=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date > CURRENT_DATE");
-        $aft_yesterday=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date BETWEEN FROM_UNIXTIME(UNIX_TIMESTAMP(CURRENT_DATE)-86400) and CURRENT_DATE");
+//        $aft_today=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date > CURRENT_DATE");
+//        $aft_yesterday=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date BETWEEN FROM_UNIXTIME(UNIX_TIMESTAMP(CURRENT_DATE)-86400) and CURRENT_DATE");
 
         $aft_in=Db::query("SELECT sum(amount) FROM `fb_exchange_record` where to_cid=4");
         $aft_out=Db::query("SELECT sum(amount) FROM `fb_exchange_record` where from_cid=4");
