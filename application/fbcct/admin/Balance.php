@@ -529,8 +529,8 @@ class Balance extends Admin
             $this->error('404');
             return;
         }
-        $bal = new \app\fbcct\model\BalanceRecord();
-        $last_record = \app\fbcct\model\BalanceRecord::where(["uid" => $data['uid'], "cid" => $data['cid']])->order("id desc")->find();
+        $bal = new \app\fbcct\model\BalanceRecordModel();
+        $last_record = \app\fbcct\model\BalanceRecordModel::where(["uid" => $data['uid'], "cid" => $data['cid']])->order("id desc")->find();
         if (!$last_record) {
             $after = 0;
         } else {
