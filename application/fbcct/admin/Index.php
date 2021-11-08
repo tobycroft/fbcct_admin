@@ -54,9 +54,11 @@ class Index extends Admin
 //        $aft_yesterday=Db::query("SELECT SUM(exchange+`out`) FROM `compute_record` where date BETWEEN FROM_UNIXTIME(UNIX_TIMESTAMP(CURRENT_DATE)-86400) and CURRENT_DATE");
 
         $aft_in=BalanceRecordModel::where("cid=4 and type=121")->sum("amount");
-        $aft_out=ExchangeRecordModel::where("from_cid=4")->sum("amount");
-        $aft_out_today=ExchangeRecordModel::where("from_cid=4 and date > CURRENT_DATE")->sum("amount");
+        $aft_out=BalanceRecordModel::where("cid=4 and type=102")->sum("amount");
+//        $aft_out=ExchangeRecordModel::where("from_cid=4")->sum("amount");
+//        $aft_out_today=ExchangeRecordModel::where("from_cid=4 and date > CURRENT_DATE")->sum("amount");
         $aft_in_today=BalanceRecordModel::where("cid=4 and type=121 and date > CURRENT_DATE")->sum("amount");
+        $aft_out_today=BalanceRecordModel::where("cid=4 and type=102 and date > CURRENT_DATE")->sum("amount");
         $btn_access = [
             'title' => '用户地址',
             'icon' => 'fa fa-fw fa-key',
@@ -72,9 +74,9 @@ class Index extends Admin
             ->addStatic('today', '今日入', "", $in_today)
             ->addStatic('today', '今日出', "", $out_today)
             ->addStatic('today', 'AFT总入', "", $aft_in)
-            ->addStatic('today', 'AFT总出', "", $aft_out)
+            ->addStatic('today', 'AFT-USDT总出', "", $aft_out)
             ->addStatic('today', 'AFT今日入', "", $aft_in_today)
-            ->addStatic('today', 'AFT今日出', "", $aft_out_today)
+            ->addStatic('today', 'AFT-USDT今日出', "", $aft_out_today)
             ->hideBtn('submit,back')
             ->fetch();
     }
