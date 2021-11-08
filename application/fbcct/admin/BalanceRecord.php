@@ -45,6 +45,8 @@ class BalanceRecord extends Admin
             ->setSearch(['uid' => 'UID',"type"=>"类型", "order_id" => "订单号","cid"=>"币种搜索","remark1"=>"备注1搜索"]) // 设置搜索参数
             ->setSearchArea([
                 ['daterange', 'date', '日期'],
+                ['text', 'id', '开始id',">"],
+                ['text', 'id', '结束id',"<"],
             ])
             ->addOrder('id')
             ->addColumn('id', 'id')
