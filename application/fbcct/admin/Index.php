@@ -74,9 +74,9 @@ class Index extends Admin
             ->addStatic('today', '今日入', "", $in_today)
             ->addStatic('today', '今日出', "", $out_today)
             ->addStatic('today', 'AFT总入', "", $aft_in)
-            ->addStatic('today', 'AFT-USDT总出', "", $aft_out)
+            ->addStatic('today', 'AFT-USDT总出', "", abs($aft_out))
             ->addStatic('today', 'AFT今日入', "", $aft_in_today)
-            ->addStatic('today', 'AFT-USDT今日出', "", $aft_out_today)
+            ->addStatic('today', 'AFT-USDT今日出', "", abs($aft_out_today))
             ->hideBtn('submit,back')
             ->fetch();
     }
